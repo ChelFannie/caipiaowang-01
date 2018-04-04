@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>彩票网</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./lib/mui/css/mui.min.css">
+    <script src="./lib/jquery/jquery.min.js"></script>
+    <script src="./lib/zepto/zepto.min.js"></script>
+    <script src="./lib/mui/js/mui.min.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/tidy.js"></script>
+</head>
+<body>
+<!-- 轮播图 start -->
+<div class="mui-slider">
+    <div class="mui-slider-group mui-slider-loop">
+        <div class="mui-slider-item mui-slider-item-duplicate">
+            <img src="./images/banner2.png">
+        </div>
+        <div class="mui-slider-item">
+            <img src="./images/banner1.png">
+        </div>
+        <div class="mui-slider-item">
+            <img src="./images/banner2.png">
+        </div>
+        <div class="mui-slider-item mui-slider-item-duplicate">
+            <img src="./images/banner1.png">
+        </div>
+    </div>
+    <div class="mui-slider-indicator">
+        <div class="mui-indicator mui-active"></div>
+        <div class="mui-indicator"></div>
+    </div>
+</div>
+<!-- 轮播图 end -->
+
+<!-- 文字滚动 start -->
+<div class="clearfix textrow">
+    <div class="notice sprit fl"></div>
+    <ul id="marquee" class="marquee fl"> 
+        <li><a href="javascript:;" target="_blank">恭喜：李*的竞彩混合中了500万!</a></li> 
+        <li><a href="javascript:;" target="_blank">恭喜：杨**足球胜负平竞彩赢100万!</a></li> 
+        <li><a href="javascript:;" target="_blank">贺喜：张无忌中奖800万！</a></li> 
+        <li>
+            <a href="javascript:;" target="_blank">贺喜：小招中奖300万！</a>
+        </li>
+    </ul> 
+</div>
+<script type="text/javascript" src="./lib/marquee/jquery.marquee.min.js"></script>
+<script type="text/javascript">
+$(function(){ 
+      $("#marquee").marquee({yScroll: "bottom"}); 
+  });
+</script>
+<!-- 文字滚动 end -->
+
+<!-- 赛事导航栏 start -->
+<div>
+<!-- 竞技彩 start -->
+<div class="main">
+    <p class="title">竞彩足球</p>
+    <ul class="rodeo">
+        <li class="item clearfix">
+            <div class="itembt item_left">
+                <a href="./pages/home/football/footballspf.html">
+                    <div class="lottery1 sprit"></div>
+                    <p class="msg">足球胜平负</p>
+                </a>
+                <a href="./pages/home/football/footballrq.html">
+                    <div class="lottery1 sprit"></div>
+                    <p class="msg">足球让球胜平负</p>
+                </a>
+                <a href="./pages/home/football/footballmix.html">
+                    <div class="lottery1 sprit"></div>
+                    <p class="msg">混合过关</p>
+                </a>
+                <a href="./pages/home/football/footballzjq.html">
+                    <div class="lottery1 sprit"></div>
+                    <p class="msg">总进球数</p>
+                </a>
+                <a href="./pages/home/football/footballbf.html">
+                    <div class="lottery1 sprit"></div>
+                    <p class="msg">比分</p>
+                </a>
+                <a href="./pages/home/football/footballbqc.html">
+                    <div class="lottery1 sprit"></div>
+                    <p class="msg">半全场</p>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>
+<!-- 竞技彩 end -->
+</div>
+<!-- 赛事导航栏 end -->
+<div class="blan"></div>
+<!-- 底部切换 start -->
+<footer class="navbar-fixed-bottom">
+    <a href="./index.html" title="" class="col-xs-3 active"><span class="home_active"></span><p class="active">首页</p></a>
+    <a href="./pages/hall/hall.html" title="" class="col-xs-3"><span class="hall"></span><p>大厅</p></a>
+    <a href="./pages/home/open_detail.html" title="" class="col-xs-3"><span class="follow"></span><p >开奖</p></a>
+    <a href="./pages/me/personCenter.html" title="" class="col-xs-3"><span class="me"></span><p>我的</p></a>
+</footer>
+<!-- 底部切换 end -->
+
+<script>
+   $.ajax({
+        // url: 'http://192.168.28.30:9731/matchData',
+        // url: 'http://192.168.28.30:8280/matchData',
+        url: '/matchData.json',
+        type: 'get',
+        dataType: 'json',
+        success: function (res) {  
+            // console.log(res);
+            $.each(res.matchData,function(index,element){
+                $.each(element.matchInfo,function(idx,ele){
+                    ele.stopSaleTime=ele.stopSaleTime.substring(11).substring(5,-3);
+                })
+            })
+            res.matchData.map(_dataItem => {
+                _dataItem.matchInfo.map(_infoItem => {
+                    _infoItem.odds.s51 && winFlatLoss(_infoItem)
+                    _infoItem.odds.s52 && score(_infoItem)
+                    _infoItem.odds.s53 && goals(_infoItem)
+                    _infoItem.odds.s54 && halfFull(_infoItem)
+                    _infoItem.odds.s56 && letwinFlatLoss(_infoItem)
+                })
+            })
+            localStorage.setItem('matchData',JSON.stringify(res));
+            getLocation();
+        },
+        error: function (result) {
+            console.log("获取失败！");
+            // alert("数据获取失败！")
+        }
+    })
+    //获得slider插件对象
+    var gallery = mui('.mui-slider');
+    gallery.slider({
+      interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
+    });
+
+    $('.itembt>a').on('tap',function() {
+        if ($(this).siblings('.list').css("display")=='none') {
+            $(this).parent().parent('.item').parent('.rodeo').parent('.main').siblings().find('.list').hide();
+            $(this).parent().parent('.item').siblings().children('.itembt').children('.list').hide();
+            $(this).parent().siblings().children('.list').hide();
+            $(this).siblings('.list').show();
+        }else{
+            $(this).siblings('.list').hide();
+        }
+    });
+
+    clearStorage();
+    function clearStorage() {
+        if (JSON.parse(sessionStorage.getItem('spqfSecObj'))) {
+            sessionStorage.removeItem('spfdataArr');
+            sessionStorage.removeItem('spqfSecObj');
+            sessionStorage.removeItem('score');
+            sessionStorage.removeItem('halfFull');
+            sessionStorage.removeItem('mix');
+            sessionStorage.removeItem('goalsData');
+        }
+    }
+    // 请求地址数据
+    $.ajax({
+        type: "GET",
+        dataType:"json",
+        url: "http://192.168.28.30:9731/data/region.json?provinceCode=&cityCode=&districtCode=",
+        // url: "/data/region.json?provinceCode=&cityCode=&districtCode=",
+        success: function(data) {
+            localStorage.setItem('addressData',JSON.stringify(data));
+        },
+        error: function(e){
+            mui.alert("地址数据请求失败！")
+        }
+    })
+    
+</script>
+</body>
+
+</html>

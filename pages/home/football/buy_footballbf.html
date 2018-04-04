@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>彩票网</title>
+    <link rel="stylesheet" href="../../../css/common.css">
+    <link rel="stylesheet" href="../../../lib/mui/css/mui.css">
+    <link rel="stylesheet" href="../../../css/football.css">
+</head>
+
+<body>
+    <div class="page-2 active">
+        <header class="navbar-fixed-top clearfix">
+            <a class="return fl" href='javascript:history.back(-1);'>
+                <img src="../../../images/back.png">
+                <span>返回</span>
+            </a>
+            <p class="fl">竞彩足球</p>
+        </header>
+        <div style="height: 0.8rem"></div>
+        <div class="select_type clearfix">
+            <div class="machine_select btn_type">
+                <a href='javascript:history.back(-1);'>添加/编辑赛事</a>
+            </div>
+            <a class="del_all btn_type" href='javascript:history.back(-1);'>清空列表</a>
+        </div>
+        <div class="buy_detail">
+            <ul>
+            </ul>
+        </div>
+        <div style="height: 5.1rem"></div>
+        <div class="page_2_footer">
+            <div class="input_box">
+                <div class="times">
+                    <span class="word">买</span>
+                    <div class="mui-numbox" data-numbox-min="1" data-numbox-max="99">
+                        <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+                        <input id="test" class="mui-input-numbox" type="number" value="1">
+                        <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+                    </div>
+                    <span class="word">倍</span>
+                </div>
+            </div>
+            <div class="buy_num">
+                <div class="row">
+                    <div class="options_l fl">过关方式</div>
+                    <ul class="options_r fl">
+                        <li class="pass_way active">
+                            <label>
+                                <input checked="checked" name="miss" type="radio" value="0">
+                                <i class="one">
+                                    <span></span>
+                                </i>
+                                <span>M串N</span>
+                            </label>
+                        </li>
+                        <li class="pass_way">
+                            <label>
+                                <input name="miss" type="radio" value="1">
+                                <i>
+                                    <span></span>
+                                </i>
+                                <span>自由过关</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="styleType passStyle"></div>
+                <div class="styleType freeStyle">自由过关内容</div>
+            </div>
+            <div class="navbar-fixed-bottom clearfix">
+                <div class="round fl" id="look">查看方案</div>
+                <div class="sure fr" id="buy_sure">购买</div>
+                <div class="money fr">
+                    <p>共
+                        <span class="pot">0</span>注，共
+                        <span class="amount">0</span>元</p>
+                    <p>预计最高奖金：
+                        <span class="maxmoney">0</span>元
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 子页面结束 -->
+    <!-- 点击查看方案详情弹出层 start-->
+    <div class="mask"></div>
+    <form class="content passway">
+        
+    </form>
+    <!-- 点击查看方案详情弹出层 end-->
+
+    <!-- 点击比分弹出层 start-->
+    <div class="content scores">
+    </div>
+    <!-- 点击比分弹出层 end-->
+    <script type="text/template" id="orderscore">
+        <%for(var i=0; i<data.length;i++){%>
+           <li class="detail_item" id="smallw" data-id="<%= data[i].matchUniqueId%>" data-time="<%= data[i].time%>">
+                <span class="del_icon"></span>
+                <div class="bf_buy">
+                    <div class="bf_name">
+                        <span class="w45"><%=data[i].host%></span>
+                        <span class="w1">vs</span>
+                        <span class="w45"><%=data[i].guest%></span>
+                    </div>
+                    <% let items=data[i].selectedItem; %>
+                    <div class="bf_score <%= items.length>0?'ok':''%>" data-id="<%= data[i].matchUniqueId%>" data-time="<%= data[i].time%>">
+                        <%if(items.length){%>
+                            <%for(var j=0; j<items.length;j++){%>
+                            <%= items[j].key%>
+                            <%}%>
+                        <%}else{%>
+                            点击展开投注区
+                        <%}%>
+                    </div>
+                </div>
+                <!-- <span class="dan">胆</span> -->
+            </li>
+        <%}%>
+    </script>
+    <script type="text/template" id="buyspfdata">
+        <div class="lottery_title ttt" id="bfalert">
+                <p>过关方式：<%=betString%></p>
+                <table>
+                    <tr style="width:100%">
+                        <td>注号</td>
+                        <td>注项内容</td>
+                        <td>奖金</td>
+                    </tr> 
+                </table>
+            </div>
+            <div class="lottery_contain pding">
+                <table>
+                    <%for(var i =0;i<buyspfItems.length;i++){%>
+                    <tr style="width:100%">
+                        <td><%=i+1%></td>
+                        <td><%=buyspfItems[i]%>x<%=multiple%>倍</td>
+                        <td><%=oddsnum[i]%></td>
+                    </tr>
+                    <%}%>
+                </table>
+            </div>
+            <div class="lottery_btn mui-button-row">
+                <button type="button" class="confirm btn_active" >确认</button>  
+            </div>
+        </div>    
+    </script>
+
+    <script type="text/template" id="scoresInfo">
+        <div class="lottery_title"><p><%=guest%>    VS    <%=host%></p></div>
+        <div class="lottery_contain">
+            <div class="select_box clearfix">
+                <p class="child_title">主胜</p>
+                <%for(let i=0;i<Victory.length;i++){%>
+                <div class="scores_item list_item_1 <%= Victory[i].select==1?'selected':''%>"  data-id="<%=matchUniqueId%>" data-guest="<%=guest%>" data-host="<%=host%>" data-key="<%=Victory[i].key%>" data-val="<%=Victory[i].val%>"><p><%=Victory[i].key%></p><p><%=Victory[i].val%></p></div>
+                <%}%>
+            </div>
+            <div class="select_box clearfix">
+                <p class="child_title">平</p>
+                <%for(let i=0;i<draw.length;i++){%>
+                <div class="scores_item list_item_1 <%= draw[i].select==1?'selected':''%>"  data-id="<%=matchUniqueId%>" data-guest="<%=guest%>" data-host="<%=host%>" data-title="draw" data-key="<%=draw[i].key%>" data-val="<%=draw[i].val%>"><p><%=draw[i].key%></p><p><%=draw[i].val%></p></div>
+                <%}%>
+            </div>
+            <div class="select_box clearfix">
+                <p class="child_title">主负</p>
+                <%for(let i=0;i<Fail.length;i++){%>
+                <div class="scores_item list_item_1 <%= Fail[i].select==1?'selected':''%>"  data-id="<%=matchUniqueId%>" data-guest="<%=guest%>" data-host="<%=host%>" data-title="Fail" data-key="<%=Fail[i].key%>" data-val="<%=Fail[i].val%>"><p><%=Fail[i].key%></p><p><%=Fail[i].val%></p></div>
+                <%}%>
+            </div>
+        </div>
+        <div class="lottery_btn mui-button-row">
+            <button type="button" class="mui-btn scoresCancle">取消</button>
+            <button type="button" class="mui-btn scoresConfirm btn_active" >确认</button>   
+        </div>
+    </script>
+    <script src="../../../lib/zepto/zepto.min.js"></script>
+    <script src="../../../lib/mui/js/mui.js"></script>
+    <script src="../../../lib/artTemplate/template-native.js"></script>
+    <script src="../../../js/common.js"></script>
+    <script src="../../../js/football/buy_scoreandhalf.js"></script>
+    
+</body>
+
+</html>

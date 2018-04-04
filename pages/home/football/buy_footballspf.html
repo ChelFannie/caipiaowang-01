@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>彩票网</title>
+    <link rel="stylesheet" href="../../../css/common.css">
+    <link rel="stylesheet" href="../../../lib/mui/css/mui.css">
+    <link rel="stylesheet" href="../../../css/football.css">
+</head>
+
+<body>
+    
+    <!-- 子页面开始 -->
+    <div class="page-2 active">
+        <header class="navbar-fixed-top clearfix">
+            <a class="return fl" href='javascript:history.back(-1);'>
+                <img src="../../../images/back.png">
+                <span>返回</span>
+            </a>
+            <p class="fl">竞彩足球</p>
+        </header>
+        <div style="height: 0.8rem"></div>
+        <div class="select_type clearfix">
+            <div class="machine_select btn_type"><a href='javascript:history.back(-1);'>添加/编辑赛事</a></div>
+            <a class="del_all btn_type"  href='javascript:history.back(-1);'>清空列表</a>
+        </div>
+        <div class="buy_detail">
+            <ul>
+            </ul>
+        </div>
+        <div style="height: 5.1rem"></div>
+        <div class="page_2_footer">
+            <div class="input_box">
+                <div class="times">
+                    <span class="word">买</span>
+                    <div class="mui-numbox" data-numbox-min="1" data-numbox-max="99">
+                        <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+                        <input id="test" class="mui-input-numbox" type="number" value="1">
+                        <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+                    </div>
+                    <span class="word">倍</span>
+                </div>
+            </div>
+            <div class="buy_num">
+                <div class="row">
+                    <div class="options_l fl">过关方式</div>
+                    <ul class="options_r fl">
+                        <li class="pass_way active">
+                            <label>
+                                <input checked="checked" name="miss" type="radio" value="0"><i class="one"><span></span></i>
+                                <span>M串N</span>
+                            </label>
+                        </li>
+                        <li class="pass_way">
+                            <label>
+                                <input name="miss" type="radio" value="1"><i><span></span></i>
+                                <span>自由过关</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="styleType passStyle"></div>
+                <div class="styleType freeStyle">自由过关内容</div>
+            </div>
+            <div class="navbar-fixed-bottom clearfix">
+                <div class="round fl" id="look">查看方案</div>
+                <div class="sure fr" id="buy_sure">购买</div>
+                <div class="money fr">
+                    <p>共<span class="pot">0</span>注，共<span class="amount">0</span>元</p>
+                    <p>预计最高奖金：<span class="maxmoney">0</span>元
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 子页面结束 -->
+    <!-- 点击查看方案详情弹出层 start-->
+    <div class="mask"></div>
+    <form class="content passway" >
+        <!-- <div class="lottery_title ttt">
+            <p>过关方式：3串1</p>
+            <span>注号</span>
+            <span>注项内容</span>
+            <span>奖金</span>
+        </div>
+        <div class="lottery_contain pding">
+            <table>
+              <tr>
+                  <td>1</td>
+                  <td>周六015(平)x周六016(胜)x周六015(平)x1倍</td>
+                  <td>147.84</td>
+              </tr>
+            </table>
+        </div>
+        <div class="lottery_btn mui-button-row">
+            <button type="button" class="confirm btn_active" >确认</button>   
+        </div> -->
+    </form>
+    <!-- 点击查看方案详情弹出层 end-->
+    <script type="text/template" id="orderspfdata">
+        <%for(var i=0; i<items.length;i++){%>
+            <li class="detail_item" data-firstindex="<%=items[i].firstindex%>" data-secindex="<%=items[i].secindex%>" data-thirdindex="<%=items[i].thirdindex%>" data-bettype="<%=items[i].bettype%>" data-guest="<%=items[i].guest%>" data-host="<%=items[i].host%>" data-lotterytype="<%=items[i].lotterytype%>" data-matchuniqueid="<%=items[i].matchuniqueid%>" data-odds0="<%=items[i].odds0%>" data-odds1="<%=items[i].odds1%>" data-odds3="<%=items[i].odds3%>" data-subplaytype="<%=items[i].subplaytype%>"  data-date="<%=items[i].date%>" data-week="<%=items[i].week%>" data-matchtimes="<%=items[i].matchtimes%>">
+                <span class="del_icon"></span>
+                <div class="game_item">
+                    <div class="list_item_1 list_win <%= items[i].firstindex==1?'selected':''%>">
+                        <p><%=items[i].host%></p>
+                        <p>主胜<%=items[i].odds3%></p>
+                    </div>
+                    <div class="list_item_1 list_vs <%= items[i].secindex==1?'selected':''%>">
+                        <p>VS</p>
+                        <p>平<%=items[i].odds1%></p>
+                    </div>
+                    <div class="list_item_1 list_lose <%= items[i].thirdindex==1?'selected':''%>">
+                        <p><%=items[i].guest%></p>
+                        <p>主负<%=items[i].odds0%></p>
+                    </div>
+                </div>
+                <!-- <span class="dan">胆</span> -->
+            </li>
+        <%}%>       
+    </script>
+    <script type="text/template" id="buyspfdata">
+        <div class="lottery_title ttt"  id="bfalert">
+                <p>过关方式：<%=betString%></p>
+                <table>
+                    <tr style="width:100%">
+                        <td>注号</td>
+                        <td>注项内容</td>
+                        <td>奖金</td>
+                    </tr> 
+                </table>
+            </div>
+            <div class="lottery_contain pding">
+                <table>
+                    <%for(var i =0;i<buyspfItems.length;i++){%>
+                    <tr>
+                        <td><%=i+1%></td>
+                        <td><%=buyspfItems[i]%>x<%=multiple%>倍</td>
+                        <td><%=oddsnum[i]%></td>
+                    </tr>
+                    <%}%>
+                </table>
+            </div>
+            <div class="lottery_btn mui-button-row">
+                <button type="button" class="confirm btn_active" >确认</button>  
+            </div>
+        </div>    
+    </script>
+    <script src="../../../lib/zepto/zepto.min.js"></script>
+    <script src="../../../lib/mui/js/mui.js"></script>
+    <script src="../../../lib/artTemplate/template-native.js"></script>
+    <script src="../../../js/common.js"></script>
+    <script src="../../../js/football/buy_footballspf.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>彩票网</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <style>
+        .menu_nav li {
+            height: 0.9rem;
+            line-height: .88rem;
+            font-size: .28rem;
+            background: #fff;
+            color: #333;
+            position: relative;
+        }
+
+        .menu_nav li a {
+            display: block;
+            padding: 0 .2rem;
+        }
+
+        .menu_nav li a::after {
+            content: '';
+            width: .17rem;
+            height: .29rem;
+            position: absolute;
+            top: .31rem;
+            right: .2rem;
+            background-image: url('../../images/icon.png');
+            background-size: 9rem 4.38rem;
+            background-position: -6.96rem -3.19rem;
+        }
+
+        .menu_nav li:nth-child(-n+2) {
+            border-bottom: 1px solid #dadada;
+        }
+
+        .menu_nav li:nth-child(-n+3) span {
+            margin-right: .25rem;
+            display: inline-block;
+            width: .48rem;
+            height: .48rem;
+            vertical-align: middle;
+            background: url('../../images/icon.png') no-repeat;
+            background-size: 9rem 4.38rem;
+        }
+
+        .menu_nav li:nth-child(1) span {
+            background-position: -6.28rem -1.88rem;
+        }
+
+        .menu_nav li:nth-child(2) span {
+            background-position: -6.28rem -2.47rem;
+        }
+
+        .menu_nav li:nth-child(3) span {
+            background-position: -7.19rem -2.47rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 头部 start -->
+    <header class="navbar-fixed-top clearfix">
+        <a href="javascript:history.back(-1)" class="return fl">
+            <img src="../../images/back.png">
+            <span>返回</span>
+        </a>
+        <p class="fl">充值</p>
+    </header>
+    <div style="height: 0.8rem"></div>
+    <!-- 头部  end -->
+
+    <!-- 付款导航 start -->
+    <div class="menu_nav">
+        <ul>
+            <li>
+                <a href="javascript:;">
+                    <span></span>微信支付</a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <span></span>微信扫码支付</a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <span></span>快捷支付</a>
+            </li>
+        </ul>
+    </div>
+    <!-- 付款导航 end -->
+</body>
+
+</html>

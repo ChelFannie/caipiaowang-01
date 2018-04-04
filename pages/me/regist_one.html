@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>彩票网</title>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/cropper.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/sitelogo.css">
+    <script type="text/javascript" src="../../lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../lib/cutimg/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../lib/cutimg/cropper.js"></script>
+    <script type="text/javascript" src="../../lib/cutimg/sitelogo11.js"></script>
+    <script type="text/javascript" src="../../lib/cutimg/html2canvas.js"></script>
+    <script src="../../lib/artTemplate/template-native.js"></script>
+    <style>
+    *{
+        font-size: .28rem;
+    }
+    .list{
+        border-bottom:1px solid #dadada;
+        background: #ffffff;
+        padding: .1rem 0;
+        overflow: hidden;
+        position: relative;
+    }
+    .list.mid{
+        padding: .2rem 0;
+    }
+    .big{
+        height: 1.4rem;
+    }
+    .small{
+        height: .9rem;
+    }
+    .list .left{
+        float: left;
+        color:#333333;
+        width: 28%;
+        padding-left: 0.2rem;    
+    }
+    .list .right{
+        float: left;
+        width: 72%;
+        padding-right: 0.2rem;
+    }
+    .list input.right{
+        font-size: .28rem;
+    }
+    .big .left,.big .right{
+        height: 1.2rem;
+        line-height: 1.2rem;
+    }
+    .small .left,.small .right{
+        height: .7rem;
+        line-height: .7rem;
+    }
+    .mid .left{
+        height: .8rem;
+        line-height: .8rem;
+    }
+    .mid .right{
+        height: .8rem;
+        line-height: .4rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+    .big .headimg{
+        display: inline-block;
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 0.05rem;
+        background: #e5e5e5;
+    }
+    .bt{
+        display: block;
+        border-radius: .05rem;
+        width: 5.3rem;
+        height: .8rem;
+        line-height: 0.8rem;
+        background: #d3233c;
+        text-align: center;
+        font-size: 0.32rem;
+        color: #ffffff;
+        margin:.3rem auto;
+    }
+    .identy_code {
+        width: 2rem;
+        height: .7rem;
+        line-height: .7rem;
+        text-align: center;
+        color: #fff;
+        font-size: .28rem;
+        background: #d3233c;
+        border-radius: 0.1rem;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: .2rem;
+        margin: auto;
+    }
+    .login {
+            text-align: center;
+            font-size: .28rem;
+        }
+
+    .login a {
+        color: #333;
+    }
+
+    .login a span {
+        color: #d3233c;
+    }
+    #phonecode{
+        padding-right: 2.5rem;
+    }
+    select {
+        border:none;
+        appearance:none;
+        -moz-appearance:none;
+        -webkit-appearance:none;
+        background:#ffffff;
+        padding-right: 14px;
+        font-size: .28rem;
+        color: #999999;
+    }
+    /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+    select::-ms-expand { display: none; }
+
+    input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
+        color: #999999; 
+    } 
+    input:-moz-placeholder, textarea:-moz-placeholder { 
+        color: #999999;
+    } 
+    input::-moz-placeholder, textarea::-moz-placeholder {
+        color: #999999; 
+    } 
+    input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+        color: #999999; 
+    } 
+</style>
+</head>
+
+<body>
+    <!-- 头部 start -->
+    <header class="navbar-fixed-top clearfix">
+        <a href="javascript:history.back(-1)" class="return fl">
+            <img src="../../images/back.png">
+            <span>返回</span>
+        </a>
+        <p class="fl">注册</p>
+    </header>
+    <div style="height: 0.8rem"></div>
+    <!-- 头部  end -->
+
+    <form class="personal_infor clearfix">
+        <div class="list big" type="button" data-toggle="modal" data-target="#avatar-modal" onClick="$('input[id=avatarInput]').click();">
+            <span class="left">头像</span>
+            <span class="right"><span class="headimg"></span></span>
+        </div>
+        <div class="list small">
+            <span class="left">用户名</span>
+            <input type="text" class="right" placeholder="用户名注册成功后不可修改" />
+        </div>
+        <div class="list small">
+            <span class="left">身份证号码</span>
+            <input type="number" class="right" id="idcard" placeholder="请输入身份证号码" />
+        </div>
+        <div class="list small">
+            <span class="left">性别</span>
+            <select class="right">
+                <option>男</option>
+                <option>女</option>
+            </select>
+        </div>
+        <div class="list small">
+            <span class="left">省</span>
+            <select class="right" id="province">
+                <option value="0">请选择省份</option>
+            </select>
+        </div>
+        <div class="list small">
+            <span class="left">市</span>
+            <select class="right" id="city">
+                <option value="0">请选择城市</option>
+            </select>
+        </div>
+        <div class="list small">
+            <span class="left">区县</span>
+            <select class="right" id="district">
+                <option value="0">请选择区县</option>
+            </select>
+        </div>
+        <div class="list small">
+            <span class="left">手机号码</span>
+            <input type="number" class="right" id="phone" placeholder="请输入手机号码" />
+        </div>
+        <div class="list small">
+            <span class="left">验证码</span>
+            <input type="text" class="right" id="phonecode" placeholder="请输入手机验证码" />
+            <div class="identy_code">获取验证码</div>
+        </div>
+        <button class="bt">提交</button>
+    </form>
+    <div class="login">
+        <a href="user_login.html">没有账号？立马
+            <span>登录&gt;</span>
+        </a>
+    </div>
+
+    <!-- 弹出裁剪框 start-->
+    <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <form class="avatar-form" action="upload-logo.php" enctype="multipart/form-data" method="post">
+                <button class="avatar-save " type="button" data-dismiss="modal">确定</button>
+                <div class="modal-body">
+                  <div class="avatar-body">
+                    <div class="avatar-upload">
+                      <input class="avatar-src" name="avatar_src" type="hidden">
+                      <input class="avatar-data" name="avatar_data" type="hidden">
+                      <input class="avatar-input hide" id="avatarInput" name="avatar_file" type="file">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-9">
+                        <div class="avatar-wrapper"></div>
+                      </div>
+                      <div class="col-md-3 hideyulang">
+                        <div class="avatar-preview preview-lg" id="imageHead"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+    <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+    <!-- 弹出剪裁框 end -->
+</body>
+<script type="text/template" id="provinceList">
+    <%for(var i =0; i<data.length;i++){%>
+        <option value="<%=data[i].regionCode%>"><%=data[i].regionName%></option>
+    <%}%>   
+</script>
+<script type="text/template" id="cityList">
+    <%for(var i =0; i<childList.length; i++){%>
+        <option value="<%=childList[i].regionCode%>"><%=childList[i].regionName%></option>
+    <%}%>   
+</script>
+<script type="text/template" id="districtList">
+    <%for(var i =0; i<childList.length; i++){%>
+        <option value="<%=childList[i].regionCode%>"><%=childList[i].regionName%></option>
+    <%}%>
+</script>
+<script>
+    // 省市区联动信息
+    $.ajax({
+        type: "GET",
+        dataType:"json",
+        url: "http://192.168.28.30:9731/data/region.json?provinceCode=&cityCode=&districtCode=",
+        // url: "/data/region.json?provinceCode=&cityCode=&districtCode=",
+        success: function(data) {
+            localStorage.setItem('addressData',JSON.stringify(data));
+        },
+        error: function(e){
+            alert("数据请求失败！")
+        }
+    })
+     // 渲染省数据
+     let addressData = JSON.parse(localStorage.getItem('addressData'))
+    console.log(addressData)
+    let detail = template('provinceList', addressData)
+    $('#province').html('<option value="0">请选择省份</option>' + detail)
+    $('#province').on('focus', function () {
+        $('#city').html('<option value="0">请选择城市</option>')
+        $('#district').html('<option value="0">请选择区县</option>')
+    })
+
+    // 市级选择
+    $('#city').on('focus', function () {
+        $('#district').html('<option value="0">请选择区县</option>')
+        let selectRegionCode = $('#province').val()
+        if(selectRegionCode != 0)
+        {
+            if(selectRegionCode  == 110000)
+            {
+                $('#city').html('<option value="110000">北京市</option>')
+            }else if(selectRegionCode  == 120000)
+            {
+                $('#city').html('<option value="120000">天津市</option>')
+            }else if(selectRegionCode  == 310000)
+            {
+                $('#city').html('<option value="310000">上海市</option>')
+            }else if(selectRegionCode  == 500000)
+            {
+                $('#city').html('<option value="500000">重庆市</option>')
+            }else{
+                let addressData = JSON.parse(localStorage.getItem('addressData'))
+                addressData.data.map((pVal) => {
+                    if(selectRegionCode == pVal.regionCode){
+                        selectCity(pVal)
+                    }
+                })
+            }
+        }else
+        {
+           alert("省份还没选哦！")
+            $(this).blur();
+        }
+    })
+    // 区县选择
+    $('#district').on('focus', function () {
+        let selectRegionCode = $('#province').val()
+        let selectDistrictCode = $('#city').val()
+        if(selectDistrictCode != 0)
+        {
+            let addressData = JSON.parse(localStorage.getItem('addressData'))
+            addressData.data.map((pVal) => {
+                if(selectRegionCode == pVal.regionCode)
+                {
+                    pVal.childList.map((cVal) => {
+                        if(selectDistrictCode == cVal.regionCode)
+                        {
+                            console.log(cVal)
+                            selectDistrict(cVal)
+                        }
+                    })
+                }
+            })
+        }else{
+           alert("市级还没选哦！")
+            $(this).blur();
+        }
+    })
+    function selectCity(pVal){
+        let cityDetail = template('cityList', pVal)
+        $('#city').html(cityDetail)
+    }
+    function selectDistrict(cVal){
+        let districtDetail = template('districtList', cVal)
+        $('#district').html(districtDetail)
+    }
+    // 身份证校验
+    $('body').on('blur', '#idcard',function () {
+        const idcard= $.trim($(this).val());
+        const idcardReg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
+        if(!idcardReg.test(idcard)){
+            alert('请输入15~18位数字的有效身份证');
+            $(this).val('');
+            return false;
+        }
+    });
+    // 电话号码校验
+    $('#phone').on('blur',function () {
+        const phone= $.trim(parseInt($(this).val()));
+        const reg = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/; 
+        if(!reg.test(phone)){
+            $(this).val('请输入正确的手机号');
+            // $(this).focus();
+            alert('请输入正确的手机号');
+            return false;
+        }
+    });
+    // 增加图片
+    $(".avatar-save").unbind("click").bind("click",function(){
+        var img_lg = document.getElementById('imageHead');
+        var canvas = document.createElement("canvas"),
+              w=$('#imageHead').width(),
+              h=$('#imageHead').height();
+              canvas.width = w * 4;
+              canvas.height = h * 4;
+              canvas.style.width = w + "px";
+              canvas.style.height = h + "px";
+              var context = canvas.getContext("2d");
+              context.scale(4,4);
+        // 截图小的显示框内的内容
+        html2canvas(img_lg, {
+          allowTaint: true,
+          taintTest: false,
+          logging: true,
+          canvas: canvas,
+          onrendered: function(canvas) {
+            canvas.id = "mycanvas";
+            //生成base64图片数据
+            var dataUrl = canvas.toDataURL("image/jpeg");
+            var newImg = document.createElement("img");
+            newImg.src = dataUrl;
+            $(".headimg").html("<img style='border-radius: 0.05rem;' src='"+newImg.src+"' alt=''>");
+          }
+        });
+    })
+</script>
+
+</html>

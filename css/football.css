@@ -1,0 +1,1452 @@
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+header p {
+    color: #ffffff;
+}
+
+a:active {
+    color: #fff;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+/* tab切换样式 */
+
+header .change_box {
+    width: 60%;
+    height: 100%;
+    position: relative;
+}
+
+.change_box .change {
+    color: #d3233c;
+    font-size: .28rem;
+    width: 3.04rem;
+    height: 0.58rem;
+    border-radius: 0.08rem;
+    background: #fff;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.change_box .change .change-item {
+    width: 50%;
+    height: .58rem;
+    line-height: .58rem;
+    text-align: center;
+}
+
+.change_box .change .left_ative {
+    width: 49%;
+    height: 0.53rem;
+    color: #fff;
+    background: #d3233c;
+    border-top-left-radius: 0.08rem;
+    border-bottom-left-radius: 0.08rem;
+    position: absolute;
+    left: 2px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.change_box .change li.right_ative {
+    width: 49%;
+    height: 0.53rem;
+    color: #fff;
+    background: #d3233c;
+    border-top-right-radius: 0.08rem;
+    border-bottom-right-radius: 0.08rem;
+    position: absolute;
+    right: 2px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+header a {
+    height: 100%;
+}
+
+header .right_icon {
+    position: relative;
+    width: 20%;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    text-align: right;
+}
+
+.tabbox_change .change_detail {
+    display: none;
+    width: 100%;
+    font-size: .28rem;
+}
+
+.tabbox_change .change_detail.active {
+    display: block;
+}
+
+.wrapper .detail {
+    background: #fff;
+    font-size: .28rem;
+    width: 100%;
+}
+
+.wrapper .detail .main {
+    float: left;
+    display: none;
+    width: 100%;
+}
+
+.wrapper .detail .main.selected {
+    display: block;
+}
+
+/* 列表 */
+
+.main .item {
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid #ffffff;
+    font-size: .22rem;
+}
+
+.main .item .item_ul {
+    display: none;
+}
+
+.main .item .item_ul.selected_ul {
+    display: block;
+    width: 100%;
+}
+
+.main .item .close {
+    position: relative;
+    height: .58rem;
+    line-height: .58rem;
+    text-align: center;
+    background: #d9d9d9;
+    color: #333333;
+}
+
+.item .close>div {
+    display: inline-block;
+    color: #333333;
+}
+
+.item .close .game_num {
+    color: #d3233c;
+}
+
+.item .close .game_time {
+    margin-right: .3rem;
+}
+
+.main .item .close:after {
+    content: '';
+    position: absolute;
+    right: 0.2rem;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: inline-block;
+    width: 0.45rem;
+    height: 0.45rem;
+    background: url('../images/icon.png') no-repeat;
+    background-size: 9rem 4.38rem;
+    background-position: -.86rem -3.7rem;
+}
+
+.main .item .close.open:after {
+    content: '';
+    position: absolute;
+    right: 0.2rem;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: inline-block;
+    width: 0.45rem;
+    height: 0.45rem;
+    background: url('../images/icon.png') no-repeat;
+    background-size: 9rem 4.38rem;
+    background-position: -1.76rem -3.7rem;
+}
+
+.main .item_ul .list {
+    height: 1.2rem;
+    background: #f6f6f6;
+    padding: .1rem;
+    border-bottom: 1px solid #999999;
+    overflow: hidden;
+}
+
+.item_ul .list .list_left {
+    text-align: center;
+    height: 100%;
+    width: 1.3rem;
+}
+
+.item_ul .list .list_left .list_arrow {
+    display: none;
+    width: 0.22rem;
+    height: 0.14rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 0;
+    background: url('../images/icon.png') no-repeat;
+    background-size: 9rem 4.38rem;
+    background-position: -7.53rem -3.82rem;
+}
+
+.item_ul .list_left p {
+    /* line-height: .28rem; */
+    line-height: .35rem;
+}
+
+.item_ul .list_left p:nth-last-of-type(-n+2) {
+    color: #999999;
+}
+
+.item_ul .list .list_right {
+    width: 77%;
+    text-align: center;
+    height: 0.8rem;
+    position: absolute;
+    /* right: .2rem; */
+    right: .15rem;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.item_ul .list_right>div {
+    float: left;
+    width: 33.333333%;
+    height: 100%;
+    padding-top: 1%;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #999999;
+    border-right: none;
+}
+
+.item_ul .list_rang {
+    float: left;
+    text-align: center;
+    line-height: .8rem;
+    height: 0.8rem;
+    color: #9cc047;
+    position: absolute;
+    left: 19%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.item_ul .list_right .list_lose {
+    border-right: 1px solid #999999;
+}
+
+.item_ul .list_right .list_item_1 {
+    /* width: 2.4rem; */
+    width: 38%;
+}
+
+.item_ul .list_right .list_item_vs {
+    /* width: 1.04rem; */
+    width: 24%;
+}
+
+.item_ul .list_right .selected {
+    background: #d3233c;
+    color: #fff;
+}
+
+.item_ul .list_right .selected p {
+    color: #fff;
+}
+
+.item_ul .list_right .selected p:last-of-type {
+    color: #fff;
+}
+
+.item_ul .list_right>div>p {
+    height: 47%;
+    line-height: .35rem;
+}
+
+.item_ul .list_right>div>p:last-of-type {
+    color: #666;
+}
+
+/* 总进球开始 */
+
+.main .item_ul .list.goal {
+    height: 1.6rem;
+    border-bottom: 1px solid #dbdada;
+}
+
+.item_ul .list.goal .list_left {
+    padding: 0.3rem 0;
+}
+
+.item_ul .list_rgoal {
+    width: 77%;
+}
+
+.item_ul .list_rgoal .list_rtop {
+    height: .4rem;
+    line-height: .4rem;
+    font-size: .22rem;
+    overflow: hidden;
+}
+
+.item_ul .list_rgoal .list_rtop span {
+    display: inline-block;
+    color: #333333;
+    width: 45%;
+    text-align: center;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.item_ul .list_rgoal .list_rtop span:nth-of-type(2) {
+    width: 10%;
+}
+
+.list_rgoal .list_rbottom .rbottom_item_1 {
+    /* width: 1.37rem; */
+    width: 23%;
+    height: 0.44rem;
+    line-height: 0.44rem;
+    color: #333333;
+    border: 1px solid #dbdada;
+    margin-right: .1rem;
+    margin-bottom: .1rem;
+    float: left;
+    padding: 0 0.05rem;
+}
+
+.list_rgoal .list_rbottom {
+    overflow: hidden;
+}
+
+.list_rgoal .list_rbottom .rbottom_item_1.selected {
+    background: #d3233c;
+    color: #fff;
+    border: none;
+}
+
+.list_rbottom .rbottom_item_1.selected .goal_money {
+    color: #fff;
+}
+
+.list_rbottom .rbottom_item_1:nth-of-type(4) {
+    margin-right: 0;
+}
+
+.list_rbottom .rbottom_item_1 .goal_money {
+    color: #999999;
+}
+
+/* 总进球结束 */
+
+.item_ul .list.list_mix {
+    height: 1.5rem;
+    border-bottom: 1px solid #dadada;
+}
+
+.item_ul .list_mix .list_left {
+    padding: .25rem 0;
+}
+
+.item_ul .list_mix .list_mixcenter {
+    width: 4.9rem;
+    height: 100%;
+    margin-right: 0.1rem;
+    margin-left: 0.1rem;
+}
+
+.list_mix .list_mixcenter .mix_team {
+    height: 0.3rem;
+}
+
+.list_mix .list_mixcenter .mix_team span {
+    float: left;
+    color: #333333;
+    width: 40%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.list_mix .list_mixcenter .mix_team span:nth-of-type(2) {
+    width: 20%;
+}
+
+.list_mix .list_mixcenter .game_type {
+    height: .45rem;
+    line-height: .45rem;
+}
+
+.list_mix .list_mixcenter .mix_spf {
+    /* width: 0.25rem; */
+    width: 0.3rem;
+    height: 100%;
+    font-size: .22rem;
+    text-align: center;
+}
+
+.list_mix .list_mixcenter .game_type_top .mix_spf {
+    color: #000;
+    background: #afafaf;
+}
+
+.list_mix .list_mixcenter .game_type_bottom .mix_spf {
+    background: #faac00;
+    color: #fff;
+}
+
+.list_mix .list_mixcenter .game_type .game_style {
+    font-size: 0;
+    height: .45rem;
+    width: 4.5rem;
+    overflow: hidden;
+}
+
+.list_mixcenter .game_type .game_style span {
+    display: inline-block;
+    color: #999999;
+    text-align: center;
+    font-size: .22rem;
+    height: .45rem;
+    width: 1.5rem;
+    float: left;
+    border: 1px solid #dadada;
+    border-left: none;
+}
+
+.list_mixcenter .game_type_bottom .game_style .game_win {
+    border-top: none;
+}
+
+.list_mixcenter .game_type_bottom .game_style .game_vs {
+    border-top: none;
+}
+
+.list_mixcenter .game_type_bottom .game_style .game_lose {
+    border-top: none;
+}
+
+.list_mixcenter .game_type .game_style span.selected {
+    background: #d3233c;
+    color: #fff;
+}
+
+.item_ul .list_mix .list_mixright {
+    width: .70rem;
+    border: 1px solid #dadada;
+    font-size: .22rem;
+    text-align: center;
+    padding-top: 0.05rem;
+    margin-top: .4rem;
+}
+
+/* 混合 开始 */
+
+/* 混合 结束 */
+
+/* 列表 */
+
+.footer {
+    width: 100%;
+    height: 1.2rem;
+    background: #fff;
+    border-top: 1px solid #dbdada;
+    color: #999999;
+    font-size: .22rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 20;
+    padding: 0 .2rem;
+}
+
+.footer .del_icon {
+    width: 0.8rem;
+    height: 0.8rem;
+    border: 1px solid #d3233c;
+    border-radius: .08rem;
+    position: absolute;
+    left: .2rem;
+    top: 0;
+    margin: auto;
+    bottom: 0;
+    z-index: 20;
+    background: url('../images/icon.png') no-repeat;
+    background-size: 9rem 4.38rem;
+    background-position: 0.08rem -3.54rem;
+}
+
+.footer .order_detail {
+    position: absolute;
+    right: .2rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.footer .order_detail .order_word {
+    color: #333333;
+    font-size: .28rem;
+    line-height: .8rem;
+}
+
+.footer .order_detail .order_word span {
+    color: #d3233c;
+}
+
+.footer .order_detail .order {
+    margin-left: .25rem;
+    display: block;
+    border: none;
+    outline: none;
+    width: 2.8rem;
+    height: 0.8rem;
+    background: #d3233c;
+    border-radius: .08rem;
+    color: #fff;
+    font-size: .32rem;
+}
+
+/* 弹出层 */
+
+.mask {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 20;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .4);
+    padding: 0 .4rem;
+}
+
+.content {
+    z-index: 30;
+    background: #fff;
+    color: #333333;
+    font-size: .28rem;
+    border-radius: .08rem;
+    position: absolute;
+    left: 0.4rem;
+    right: 0.4rem;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.screening {
+    height: 6.5rem;
+    display: none;
+}
+
+.passway {
+    height: 63%;
+    display: none;
+}
+
+.scores {
+    height: 11rem;
+    display: none;
+}
+
+.half_full {
+    height: 5.5rem;
+    display: none;
+}
+
+.mingle {
+    height: 80%;
+    display: none;
+}
+
+.passway .lottery_contain .select_box {
+    margin-bottom: .2rem;
+    font-size: .22rem;
+    color: #333333;
+    border-bottom: 1px solid #dadada;
+    text-align: center;
+    font-size: .28rem;
+}
+
+.scores .select_box,
+.half_full .select_box,
+.mingle .select_box {
+    font-size: 0;
+}
+
+.scores .selected,
+.half_full .selected,
+.mingle .selected {
+    background: #d3233c;
+    color: #fff;
+    border: 1px solid #d3233c;
+}
+
+.scores .child_title,
+.half_full .child_title,
+.mingle .child_title {
+    text-align: center;
+    background: #d9d9d9;
+    height: .48rem;
+    line-height: .48rem;
+    font-size: .28rem;
+    margin-bottom: 0.05rem;
+}
+
+.sheng {
+    overflow: hidden;
+}
+
+.scores .list_item_1,
+.half_full .list_item_1,
+.mingle .list_item_1 {
+    /* display: inline-block; */
+    float: left;
+    width: 18%;
+    text-align: center;
+    border: 1px solid #dadada;
+    border-radius: 0.08rem;
+    padding: 0.05rem 0;
+    margin: 0.15rem 2% 0 0;
+}
+
+.scores_item.list_item_1:nth-of-type(5n) {
+    margin: 0.15rem 0 0 0;
+}
+
+.scores .list_item_1 p,
+.half_full .list_item_1 p,
+.mingle .list_item_1 p {
+    height: 0.29rem;
+    line-height: 0.29rem;
+}
+
+.mingle .spf {
+    overflow: hidden;
+}
+
+.mingle .spf>div {
+    display: inline-block;
+    float: left;
+    text-align: center;
+    height: .68rem;
+    line-height: .68rem;
+    font-size: .22rem;
+    border: 1px solid #dadada;
+}
+
+.mingle .w7 {
+    width: 7%;
+}
+
+.mingle .w7 {
+    background: #afafaf;
+}
+
+.mingle .w7.green {
+    background: #9cc047;
+}
+
+.mingle .w31 {
+    width: 31%;
+}
+
+.mingle .sheng>p {
+    text-align: center;
+    font-size: .22rem;
+    margin-top: .15rem;
+    background: #f6f6f6;
+}
+
+.content .lottery_title {
+    height: 0.9rem;
+    line-height: .88rem;
+    text-align: center;
+    border-bottom: 1px solid #dadada;
+    position: absolute;
+    left: 0;
+    top: -0.05rem;
+    right: 0;
+    background: #fff;
+    z-index: 40;
+}
+
+.content .lottery_contain {
+    height: 100%;
+    padding: 1.1rem .3rem 1.2rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    background: #fff;
+    z-index: 30;
+    overflow-y: scroll;
+}
+
+.content .lottery_contain .select_box {
+    margin-bottom: .2rem;
+    font-size: .22rem;
+    color: #333333;
+    overflow: hidden;
+}
+
+.lottery_contain .select_box .left {
+    margin-right: .4rem;
+    position: relative;
+    line-height: .22rem;
+}
+
+.lottery_contain .select_box input {
+    display: inline-block;
+    width: 0.24rem;
+    height: 0.24rem;
+    vertical-align: middle;
+    margin-right: .15rem;
+    visibility: hidden;
+}
+
+.select_box .left .icon {
+    display: inline-block;
+    width: 0.24rem;
+    height: 0.24rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 1px solid #d3233c;
+    border-radius: .08rem;
+}
+
+.select_box .left input:checked+.icon::before {
+    content: '';
+    width: 0.24rem;
+    height: 0.24rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: url('../images/icon.png') no-repeat;
+    background-size: 9rem 4.38rem;
+    background-position: -8.66rem -3.80rem;
+}
+
+.select_box .right .game_num {
+    color: #d3233c;
+}
+
+.lottery_contain .game_team {
+    width: 100%;
+    height: 0.5rem;
+    margin-bottom: 0.1rem;
+    overflow: hidden;
+}
+
+.lottery_contain .game_team span {
+    display: inline-block;
+    width: 1.9rem;
+    height: 100%;
+    border: 1px solid #dadada;
+    border-radius: .08rem;
+    text-align: center;
+    line-height: 0.5rem;
+    float: left;
+}
+
+.lottery_contain .game_team span:nth-of-type(2) {
+    margin: 0 .1rem;
+}
+
+.lottery_contain .game_team .selected_team {
+    border: none;
+    background: #d3233c;
+    color: #fff;
+}
+
+.content .lottery_btn {
+    height: 1.2rem;
+    line-height: 1.2rem;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    right: 0;
+    background: #fff;
+    z-index: 40;
+}
+
+.content .lottery_btn button {
+    border: none;
+    outline: none;
+    width: 2rem;
+    height: .58rem;
+    text-align: center;
+    color: #d3233c;
+    border: 1px solid #d3233c;
+    border-radius: .08rem;
+    margin-right: .3rem;
+    margin-top: .2rem;
+    font-size: .32rem;
+    background: #fff;
+}
+
+.content .lottery_btn .btn_active {
+    border: none;
+    background: #d3233c;
+    color: #fff;
+}
+
+.content .lottery_contain.pding {
+    padding: 0.85rem .3rem 1.2rem;
+    /* margin-top: -2px; */
+}
+
+.content .lottery_contain table {
+    width: 100%;
+    font-size: 0.22rem;
+}
+
+.content .lottery_contain table tr {
+    margin-bottom: 0.2rem;
+}
+
+.content .lottery_contain table tr td {
+    text-align: center;
+    border: 1px solid #999;
+}
+
+.content .lottery_contain table tr td:nth-child(1) {
+    width: 13%;
+}
+
+.content .lottery_contain table tr td:nth-child(2) {
+    width: 63%;
+}
+
+.content .lottery_contain table tr td:nth-child(3) {
+    width: 24%;
+}
+
+.content .lottery_title.ttt {
+    border: none;
+    padding: 0 0.3rem;
+    overflow: hidden;
+    top: -1px;
+    height: auto;
+    line-height: ;
+}
+
+.content .lottery_title.ttt p {
+    line-height: .6rem;
+}
+
+.content .lottery_title.ttt tr {
+    font-size: .22rem;
+    color: #000;
+    height: .7rem;
+    line-height: .7rem;
+}
+
+.content .lottery_title.ttt td:nth-of-type(1) {
+    width: 13%;
+    border-right: none;
+    border: 1px solid #999;
+}
+
+.content .lottery_title.ttt td:nth-of-type(2) {
+    width: 63%;
+    border-right: none;
+    border: 1px solid #999;
+}
+
+.content .lottery_title.ttt td:nth-of-type(3) {
+    width: 24%;
+    border: 1px solid #999;
+}
+
+/* 弹出层 */
+
+/*子页面开始 足球让球胜平负*/
+
+.page-2.active {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+}
+
+/* 底部开始 */
+
+.mui-numbox [class*=numbox-btn],
+.mui-numbox [class*=btn-numbox] {
+    font-size: .30rem;
+    width: .6rem;
+    background-color: #fff;
+}
+
+input,
+textarea,
+select {
+    font-size: .28rem;
+}
+
+.mui-numbox .mui-numbox-input,
+.mui-numbox .mui-input-numbox {
+    border-right: solid 1px #dadada !important;
+    ;
+    border-left: solid 1px #dadada !important;
+    ;
+}
+
+.mui-numbox [class*=numbox-btn],
+.mui-numbox [class*=btn-numbox] {
+    background-color: #fff;
+}
+
+.select_type {
+    height: 0.88rem;
+    width: 100%;
+    text-align: center;
+    padding: .15rem;
+    border-bottom: 1px solid #dadada;
+}
+
+.select_type .btn_type {
+    float: left;
+    width: 2.16rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    border: 1px solid #dadada;
+    border-radius: .08rem;
+    background: #fff;
+    font-size: .28rem;
+    color: #333333;
+    margin-right: .3rem;
+}
+
+.buy_detail .detail_item {
+    position: relative;
+    border-bottom: 1px solid #dadada;
+    width: 100%;
+    /* padding: .2rem .8rem; */
+    padding: 0.2rem 0.5rem 0.2rem 0.9rem;
+    font-size: .22rem;
+    background: #fff;
+    overflow: hidden;
+}
+
+/* 比分购买页 start*/
+
+.detail_item .bf_buy .bf_name {
+    overflow: hidden;
+    margin-bottom: 0.1rem;
+}
+
+.detail_item .bf_buy .w45 {
+    float: left;
+    width: 45%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.detail_item .bf_buy .w1 {
+    float: left;
+    width: 10%;
+    text-align: center;
+}
+
+.detail_item .bf_buy .bf_score {
+    overflow: hidden;
+    padding: .05rem 0;
+    line-height: .48rem;
+    border: 1px solid #999999;
+    border-radius: .08rem;
+    text-align: center;
+}
+
+.detail_item .bf_buy .bf_score.ok {
+    background: #d3233c;
+    color: #fff;
+    border: none;
+}
+
+.detail_item .bf_buy .bf_score span {
+    padding: 0 .1rem;
+}
+
+#smallw {
+    /* padding: .2rem 1rem; */
+    padding: 0.2rem 0.5rem 0.2rem 1rem;
+}
+
+/* 比分购买页 end */
+
+/* 总进球购买页 start*/
+
+.bf_buy .list_rbottom .rbottom_item_1 {
+    width: 23.3%;
+    height: 0.44rem;
+    line-height: 0.44rem;
+    color: #333333;
+    border: 1px solid #dbdada;
+    margin-right: .1rem;
+    margin-bottom: .1rem;
+    float: left;
+    padding: 0 0.05rem;
+}
+
+.bf_buy .list_rbottom {
+    overflow: hidden;
+}
+
+.bf_buy .list_rbottom .rbottom_item_1.selected {
+    background: #d3233c;
+    color: #fff;
+    border: none;
+}
+
+.bf_buy .list_rbottom .rbottom_item_1.selected .goal_money {
+    color: #fff;
+}
+
+.bf_buy .list_rbottom .rbottom_item_1:nth-of-type(4) {
+    margin-right: 0;
+}
+
+.bf_buy .list_rbottom .rbottom_item_1 .goal_money {
+    color: #999999;
+}
+
+/* 总进球购买页 end*/
+
+.buy_detail .detail_item span {
+    display: inline-block;
+}
+
+.buy_detail .detail_item .del_icon {
+    width: .43rem;
+    height: .44rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: .2rem;
+    background-image: url('../images/icon.png');
+    background-size: 9rem 4.38rem;
+    background-position: -1.32rem -3.74rem;
+}
+
+.buy_detail .detail_item .game_item {
+    width: 100%;
+    height: .8rem;
+    font-size: 0;
+    background: #fff;
+}
+
+.detail_item .game_item .list_item_1 {
+    display: inline-block;
+    width: 38%;
+    height: 100%;
+    font-size: .22rem;
+    text-align: center;
+    border: 1px solid #dadada;
+    border-right: none;
+    padding-top: 1%;
+}
+
+.detail_item .game_item .list_lose {
+    border-right: 1px solid #dadada;
+}
+
+.game_item .list_item_1 p {
+    height: 47%;
+    line-height: .35rem;
+}
+
+.game_item .list_item_1 p:last-of-type {
+    color: #666;
+}
+
+.detail_item .game_item .selected {
+    background: #d3233c;
+    border: none;
+}
+
+.detail_item .game_item .selected p {
+    color: #fff;
+}
+
+.detail_item .game_item .list_vs {
+    width: 24%;
+    font-size: .22rem;
+    border-left: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+}
+
+.buy_detail .detail_item .dan {
+    height: .8rem;
+    width: 0.4rem;
+    position: absolute;
+    right: .2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1px solid #dadada;
+    line-height: .8rem;
+    text-align: center;
+}
+
+.page_2_footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background: #ffffff;
+    overflow: hidden;
+    border-top: 1px solid #dbdada;
+}
+
+.page_2_footer .input_box {
+    background: #eeeeee;
+    border-bottom: 1px solid #dadada;
+    padding: .1rem .2rem;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.page_2_footer .input_box .mui-numbox {
+    height: .7rem;
+    width: 2rem;
+    padding: 0 .6rem;
+    border-radius: 0.08rem;
+}
+
+.page_2_footer .word {
+    font-size: .28rem;
+}
+
+.page_2_footer .navbar-fixed-bottom {
+    font-size: .24rem;
+    border-top: 1px solid #dbdada;
+    padding: 0.3rem 0.2rem;
+    overflow: hidden;
+}
+
+.page_2_footer .buy_num .row {
+    overflow: hidden;
+    font-size: .28rem;
+    padding: .1rem .2rem;
+    height: 0.6rem;
+}
+
+.buy_num .row .options_l {
+    width: 20%;
+    height: 0.4rem;
+    line-height: 0.4rem;
+}
+
+.buy_num .row .options_r {
+    width: 80%;
+    overflow: hidden;
+}
+
+.buy_num .row .options_r li {
+    position: relative;
+    float: left;
+    width: 50%;
+    height: .4rem;
+    line-height: .4rem;
+    padding-left: 0.6rem;
+}
+
+.buy_num .row .options_r label i {
+    /*display: none;*/
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: .4rem;
+    height: .4rem;
+    outline: 0;
+    border: 1px solid #d3233c;
+    border-radius: 50%;
+}
+
+.row .options_r label i span {
+    display: none;
+    display: inline-block;
+    position: absolute;
+    content: '';
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: .24rem;
+    height: .24rem;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.row .options_r li i span {
+    background-color: #fff;
+}
+
+.row .options_r li.active i span {
+    background-color: #d3233c;
+}
+
+input[type='radio'] {
+    display: none;
+}
+
+.page_2_footer .buy_num .styleType {
+    padding-top: .2rem;
+    font-size: 0;
+}
+
+.page_2_footer .buy_num .freeStyle {
+    display: none;
+}
+
+.page_2_footer .buy_num .styleType span {
+    font-size: .28rem;
+    display: inline-block;
+    width: 1.3rem;
+    height: 0.5rem;
+    border: 1px solid #d3233c;
+    border-radius: .08rem;
+    text-align: center;
+    line-height: 0.5rem;
+    margin-left: .15rem;
+    margin-bottom: .2rem;
+}
+
+.page_2_footer .buy_num .styleType span.active {
+    color: #fff;
+    background: #d3233c;
+}
+
+.navbar-fixed-bottom .sure {
+    width: 20%;
+    font-size: .32rem;
+    text-align: center;
+    background: #d3233c;
+    border-radius: .08rem;
+    vertical-align: middle;
+    padding: 0.15rem 0.05rem;
+    color: #ffffff;
+}
+
+.navbar-fixed-bottom .money {
+    padding-right: .2rem;
+    vertical-align: middle;
+    width: 60%;
+}
+
+.navbar-fixed-bottom .money p {
+    height: .4rem;
+    line-height: .4rem;
+    font-size: .24rem;
+    text-align: right;
+    color: #333333;
+}
+
+.navbar-fixed-bottom p span {
+    color: #d3233c;
+}
+
+.navbar-fixed-bottom .round {
+    width: 20%;
+    font-size: .28rem;
+    text-align: center;
+    border: 1px solid #d3233c;
+    border-radius: .08rem;
+    color: #d3233c;
+    padding: .15rem .05rem;
+    vertical-align: middle;
+}
+
+/* 底部结束 */
+
+/*子页面结束  足球让球胜平负*/
+
+/* 比分子页面 */
+
+.item_ul .list .bifen_left {
+    text-align: center;
+    width: 20%;
+    font-size: 0;
+}
+
+.item_ul .list .bifen_left p {
+    font-size: .22rem;
+    line-height: .35rem;
+    /* line-height: .3rem; */
+}
+
+.item_ul .list .bifen_right {
+    width: 80%;
+    text-align: center;
+}
+
+.item_ul .bifen_right .right_top .w45 {
+    float: left;
+    width: 45%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.item_ul .bifen_right .right_top .w1 {
+    float: left;
+    width: 10%;
+}
+
+.item_ul .bifen_right .right_bottom {
+    width: 5.84rem;
+    height: .48rem;
+    line-height: .48rem;
+    border: 1px solid #999999;
+    border-radius: .08rem;
+    margin-top: .05rem;
+}
+
+/* 比分子页面 */
+
+/* 导航栏样式 */
+
+.tabbox_change .tab_box {
+    position: fixed;
+    top: 0.8rem;
+    z-index: 10;
+}
+
+.wrapper .tab {
+    position: relative;
+    width: 100%;
+    white-space: nowrap;
+    height: 0.72rem;
+    line-height: 0.72rem;
+    color: #666;
+    background: #fff;
+    font-size: 0;
+    left: 0;
+    /* transition: all 0.5s; */
+}
+
+.wrapper .tab li {
+    font-size: .28rem;
+    display: inline-block;
+    text-align: center;
+    width: 33.33%;
+    height: .4rem;
+    line-height: .4rem;
+    border-right: 1px solid #9d9d9d;
+    vertical-align: middle;
+}
+
+.wrapper .tab li:nth-child(3n) {
+    border-right: none;
+}
+
+.wrapper .tab li.active {
+    /* font-size: .32rem; */
+    color: #d3233c;
+}
+
+.tab_box {
+    width: 100%;
+    height: .72rem;
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+}
+
+.tab_box .ar-1 {
+    opacity: 1;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 12;
+    width: 0;
+    height: 0;
+    border-width: .15rem;
+    border-color: transparent transparent transparent #ddd;
+    border-style: dashed dashed dashed solid;
+    transition: all 0.5s;
+}
+
+.tab_box .ar-2 {
+    opacity: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 12;
+    width: 0;
+    height: 0;
+    border-width: .15rem;
+    border-color: transparent #ddd transparent transparent;
+    border-style: dashed solid dashed dashed;
+    transition: all 0.5s;
+}
+
+/* 半全场弹出框 */
+
+.select_box .list_type {
+    width: 33.33%;
+    height: 0.68rem;
+    float: left;
+    text-align: center;
+    font-size: .24rem;
+    margin-bottom: .2rem;
+}
+
+.select_box .list_type .wrap {
+    display: inline-block;
+    width: 90%;
+    height: .68rem;
+    line-height: .68rem;
+    border: 1px solid #999999;
+    text-align: center;
+}
+
+.select_box .list_type .wrap span:nth-child(1) {
+    margin-right: .2rem;
+}
+
+.item_ul .list_mixright.selected {
+    background: #d3233c;
+    border: none;
+    color: #fff;
+}

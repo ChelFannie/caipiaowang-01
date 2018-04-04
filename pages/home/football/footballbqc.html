@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>彩票网</title>
+    <link rel="stylesheet" href="../../../css/common.css">
+    <link rel="stylesheet" href="../../../lib/mui/css/mui.css">
+    <link rel="stylesheet" href="../../../css/football.css">
+</head>
+
+<body>
+    <div class="page-1 page-1-none">
+        <!-- 头部 start -->
+        <header class="navbar-fixed-top clearfix">
+            <a href="../../../index.html" class="return fl">
+                <img src="../../../images/back.png">
+                <span>返回</span>
+            </a>
+            <div class="change_box fl">
+                <ul class="change clearfix">
+                    <li class="change-item fl" data-type="pass">过关</li>
+                    <li class="change-item fr right_ative" data-type="single">单关</li>
+                </ul>
+            </div>
+            <div class="right_icon fl">
+                <a href="javascript:;" class="select-icon"></a>
+                <a href="javascript:;" class="question-icon"></a>
+            </div>
+        </header>
+        <div style="height: 0.8rem"></div>
+        <!-- 头部  end -->
+
+        <div class="tabbox_change clearfix">
+            <div class="change_detail active">
+                <div class="wrapper">
+                    <div class="tab_box">
+                        <ul class="tab clearfix">
+                            <li class="tab-item">
+                                <a href="footballspf.html">足球胜平负</a>
+                            </li>
+                            <li class="tab-item">
+                                <a href="footballrq.html">足球让球胜平负</a>
+                            </li>
+                            <li class="tab-item">
+                                <a href="footballmix.html">混合过关</a>
+                            </li>
+                            <li class="tab-item">
+                                <a href="footballzjq.html">总进球数</a>
+                            </li>
+                            <li class="tab-item">
+                                <a href="footballbf.html">比分</a>
+                            </li>
+                            <li class="tab-item active">半全场</li>
+                        </ul>
+                        <span class="ar-1" style="display: none;"></span>
+                        <span class="ar-2"></span>
+                    </div>
+                    <div class="lan" style="height: 0.72rem"></div>
+                    <div class="detail clearfix">
+                        <div class="main selected">
+                            <ul class="clearfix">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部 start -->
+        <div style="height: 1.2rem"></div>
+        <div class="footer">
+            <button class="del_icon"></button>
+            <div class="order_detail clearfix">
+                <div class="order_word fl">已选择
+                    <span class="selectSession">0</span> 场</div>
+                <button class="order fl buy">至少选择两场</button>
+            </div>
+        </div>
+        <!-- 底部 end -->
+    </div>
+
+    <!-- 点击半全场弹出层 start-->
+    <div class="mask"></div>
+    <div class="content half_full">
+    </div>
+    <!-- 点击半全场弹出层 end-->
+    <div style="height: 1.2rem"></div>
+    <script src="../../../lib/zepto/zepto.min.js"></script>
+    <script src="../../../lib/mui/js/mui.js"></script>
+    <script src="../../../lib/artTemplate/template-native.js"></script>
+    <script src="../../../js/common.js"></script>
+    <script src="../../../js/tidy.js"></script>
+    <script type="text/template" id="scoresData">
+        <%for(var i =0; i<matchData.length;i++){%>
+            <li class="item">
+                <div class="close <%= i==0?'open':''%>">
+                    <div class="game_time"><%=matchData[i].date%> <%=matchData[i].week%></div>
+                    <div class="game_total">共
+                        <span class="game_num"><%=matchData[i].matchInfo.length%></span> 场比赛可投
+                    </div>
+                </div>
+                <%let infoArr=matchData[i].matchInfo;%>
+                <ul class="item_ul <%= i==0?'selected_ul':''%>">
+                    <% for(let j =0; j<infoArr.length; j++){ %>
+                    <li class="list clearfix">
+                        <div class="bifen_left fl">
+                            <p><%=infoArr[j].leagueName%></p>
+                            <p><%=infoArr[j].matchTimes%></p>
+                            <p><%=infoArr[j].stopSaleTime%>截至</p>
+                        </div>
+                        <div class="bifen_right fl">
+                            <div class="right_top clearfix">
+                                <p class="w45">【客】<%=infoArr[j].guest%></p>
+                                <p class="w1">VS</p>
+                                <p class="w45">【主】<%=infoArr[j].host%></p>
+                            </div>
+                            <div class="right_bottom scores_bt" data-id="<%=infoArr[j].matchUniqueId%>" data-matchdata-item="<%=i%>" data-matchinfo-item="<%=j%>">点击展开投注区</div>
+                        </div>
+                    </li>
+                    <%}%>
+                </ul>
+            </li>
+        <%}%> 
+    </script>
+    <script type="text/template" id="scoresInfo">
+        <div class="lottery_title"><p><%=guest%>    VS    <%=host%></p></div>
+            <div class="lottery_contain">
+                <div class="select_box clearfix">
+                    <%for(let i=0;i<Victory.length;i++){%>
+                        <div class="list_type"><div class="half_item wrap <%= Victory[i].select==1?'selected':''%>" data-id="<%=matchUniqueId%>" data-guest="<%=guest%>" data-host="<%=host%>" data-key="<%=Victory[i].key%>" data-val="<%=Victory[i].val%>" data-result="<%=Victory[i].result%>"><span><%=Victory[i].result%></span ><span><%=Victory[i].val%></span ></div></div>
+                    <%}%>
+                    <%for(let i=0;i<Draw.length;i++){%>
+                        <div class="list_type"><div class="half_item wrap <%= Draw[i].select==1?'selected':''%>" data-id="<%=matchUniqueId%>" data-guest="<%=guest%>" data-host="<%=host%>" data-key="<%=Draw[i].key%>" data-val="<%=Draw[i].val%>" data-result="<%=Draw[i].result%>"><span><%=Draw[i].result%></span ><span><%=Draw[i].val%></span ></div></div>
+                    <%}%>
+                    <%for(let i=0;i<Fail.length;i++){%>
+                        <div class="list_type"><div class="half_item wrap <%= Fail[i].select==1?'selected':''%>" data-id="<%=matchUniqueId%>" data-guest="<%=guest%>" data-host="<%=host%>" data-key="<%=Fail[i].key%>" data-val="<%=Fail[i].val%>" data-result="<%=Fail[i].result%>"><span><%=Fail[i].result%></span ><span><%=Fail[i].val%></span ></div></div>
+                    <%}%>
+                </div>
+            </div>
+            <div class="lottery_btn mui-button-row">
+            <button type="button" class="mui-btn cancle halfCancle">取消</button>
+            <button type="button" class="mui-btn confirm btn_active halfConfirm" >确认</button> 
+        </div>
+    </script>
+    <script type="text/javascript">
+
+
+        // 展开场次
+        $(document).on('tap', '.close', function () {
+            $(this).hasClass('open') ? $(this).removeClass('open') : $(this).addClass('open')
+            $(this).parent('li').siblings().find('ul').hasClass('selected_ul')
+                ?
+                $(this).parent('li').siblings().children('.close').removeClass('open').parent().find('ul').removeClass('selected_ul')
+                : ''
+            $(this).siblings('ul').toggleClass('selected_ul')
+        })
+
+        let orderType = 'pass'
+
+        // 单关过关切换
+        $(".change-item").on('tap', function () {
+            orderType != 'pass' ? $('.buy').text('至少选择两场') : $('.buy').text('至少选择一场')
+            $(".selectSession").text(0)
+            tabChangebg($(this).index(), $(this))
+            sessionStorage.removeItem('halfFull')
+            selectedArr = []
+            let dataObj = {}
+            if ($(this).index()) { // 单关
+                orderType = 'single'
+                $(this).addClass('disabledTab').siblings().removeClass('disabledTab')
+                dataObj = JSON.parse(localStorage.getItem('matchData'))
+                dataObj.matchData.map(_item => {
+                    let singleArr = []
+                    _item.matchInfo.map(val => {
+                        (val.gamePlay['54'] == 3) && singleArr.push(val)
+                    })
+                    _item.matchInfo = singleArr
+                })
+            } else { // 过关
+                orderType = 'pass'
+                $(this).addClass('disabledTab').siblings().removeClass('disabledTab')
+                dataObj = JSON.parse(localStorage.getItem('matchData'))
+            }
+            let detail = template('scoresData', dataObj)
+            $('.main.selected ul').html(detail)
+        })
+
+        let selectedArr = []
+        let oldText = ''
+        // 展开投注区
+        $(document).on('tap', '.scores_bt', function () {
+            let data = JSON.parse(localStorage.getItem('matchData'))
+            let dataInfo = data.matchData[$(this).data("matchdataItem")].matchInfo[$(this).data("matchinfoItem")]
+            let dataObj = {
+                Victory: dataInfo.odds.halfFull.wins,
+                Fail: dataInfo.odds.halfFull.losses,
+                Draw: dataInfo.odds.halfFull.draws,
+                host: dataInfo.host,
+                guest: dataInfo.guest,
+                matchUniqueId: dataInfo.matchUniqueId
+            }
+            // console.log(dataObj)
+            selectedArr.length > 0 && selectedArr.map(val => {
+                if (val['matchUniqueId'] === dataInfo.matchUniqueId) {
+                    for (const key in dataObj) {
+                        if (typeof (dataObj[key]) == "object") {
+                            dataObj[key].map(item => {
+                                val['selectedItem'].map(val1 => {
+                                    if (val1.key == item['key']) {
+                                        item['select'] = '1'
+                                    }
+                                })
+                            })
+                        }
+                    }
+                }
+            })
+            oldText = $(this).text()
+            $(this).text('')
+            $(".half_full").show()
+            $(".mask").show()
+            let detail1 = template('scoresInfo', dataObj)
+            $('.half_full').html(detail1)
+        })
+
+        // 半场弹出框确定按钮
+        $(document).on('tap', '.halfConfirm', function () {
+            $(".half_full").hide()
+            $(".mask").hide()
+            let selectedItemObj = {}, selectedItem = [], id = '', idxArr = []
+            $(".half_item").map((idx, val) => {
+                if ($(val).hasClass('selected')) {
+                    selectedItem.push({ result: $(val).data('result'), key: $(val).data('key'), val: $(val).data('val') })
+                    selectedItemObj['matchUniqueId'] = $(val).data('id')
+                    selectedItemObj['guest'] = $(val).data('guest')
+                    selectedItemObj['host'] = $(val).data('host')
+                }
+                id = $(val).data('id')
+            })
+            // 当去掉选择时，删除该条数据
+            selectedItem.length == 0 && selectedArr.map((val, idx) => {
+                if (val['matchUniqueId'] == id) {
+                    selectedArr.splice(idx, 1)
+                }
+            })
+            selectedItem.length > 0 && (selectedItemObj['selectedItem'] = selectedItem)
+            selectedItem.length > 0 && selectedArr.push(selectedItemObj)
+            // 数组去重
+            selectedArr.map((val, idx) => {
+                val['matchUniqueId'] === id ? (idxArr.push(idx)) : ''
+            })
+            idxArr.length > 1 ? (selectedArr.splice(idxArr[0], 1)) : ''
+
+            $(".scores_bt").map((idx, val) => {
+                if ($(val).text() === '') {
+                    selectedItem.length == 0 && $(val).text('点击展开投注区').css({
+                        backgroundColor: '#f6f6f6',
+                        color: '#333'
+                    })
+                    if (selectedItem.length > 0) {
+                        let str = ''
+                        selectedItem.map(val => {
+                            str = str + val.result + ' '
+                        })
+                        $(val).text(str)
+                        $(val).css({
+                            backgroundColor: '#d3233c',
+                            color: '#fff'
+                        })
+                    }
+                    if (orderType == 'pass' && selectedArr.length > 4) {
+                        $(val).text('点击展开投注区').css({
+                            backgroundColor: '#f6f6f6',
+                            color: '#333'
+                        })
+                    }
+                    if (orderType == 'single' && selectedArr.length > 8) {
+                        $(val).text('点击展开投注区').css({
+                            backgroundColor: '#f6f6f6',
+                            color: '#333'
+                        })
+                    }
+                }
+            })
+            if (orderType == 'pass' && selectedArr.length > 4) {
+                selectedArr.splice(selectedArr.length - 1, 1)
+                mui.alert('最多4选择场赛事')
+            }
+            if (orderType == 'single' && selectedArr.length > 8) {
+                selectedArr.splice(selectedArr.length - 1, 1)
+                mui.alert('最多8选择场赛事')
+            }
+            $(".selectSession").text(selectedArr.length)
+            if (orderType == 'pass') {
+                selectedArr.length >= 2 ? ($('.buy').text('购买')) : ($('.buy').text('至少选择两场'))
+            } else {
+                selectedArr.length >= 1 ? ($('.buy').text('购买')) : ($('.buy').text('至少选择一场'))
+            }
+
+        })
+
+        // 半场弹出框取消按钮
+        $(document).on('tap', '.halfCancle', function () {
+            $(".half_full").hide()
+            $(".mask").hide()
+            $(".scores_bt").map((idx, val) => {
+                $(val).text() === '' && $(val).text(oldText)
+            })
+        })
+
+        // 半场弹出框选项选中
+        $(document).on('tap', '.half_item', function () {
+            $(this).toggleClass('selected')
+        })
+
+        // 删除
+        $('.del_icon').on('tap', function () {
+            selectedArr = []
+            $(".selectSession").text(selectedArr.length)
+            // $('.buy').text('至少选择两场')
+            orderType == 'pass' ? $('.buy').text('至少选择两场') : $('.buy').text('至少选择一场')
+            $(".scores_bt").map((idx, val) => {
+                $(val).text('点击展开投注区')
+                $(val).css({
+                    backgroundColor: '#f6f6f6',
+                    color: '#333'
+                })
+            })
+            let halfFull = JSON.parse(sessionStorage.getItem('halfFull'));
+            if (halfFull) {
+                sessionStorage.removeItem('halfFull')
+                sessionStorage.removeItem('spqfSecObj')
+            }
+        })
+        // 购买
+        $('.buy').on('tap', function () {
+            if (orderType == 'pass' && selectedArr.length < 2) {
+                return
+            }
+            if (orderType == 'single' && selectedArr.length < 1) {
+                return
+            }
+            let data = JSON.parse(localStorage.getItem('matchData'))
+            data.matchData.map(val => {
+                val.matchInfo.map(val1 => {
+                    selectedArr.map(val2 => {
+                        if (val1.matchUniqueId == val2.matchUniqueId) {
+                            val2['halfFull'] = val1.odds.halfFull
+                            val2['time'] = val1.date.substring(11) + val1.matchTimes
+                        }
+                    })
+                })
+            })
+            let obj = {
+                lotteryType: '51',
+                subPlayType: '54',
+                type: orderType,
+                data: selectedArr
+            }
+            sessionStorage.setItem('halfFull', JSON.stringify(obj))
+            // console.log(12, obj)
+            location.href = 'buy_footballbqc.html';
+        })
+        // 导航栏切换 start
+        // 滚到导航右边
+        function navigationSet() {
+            $('.tab').css('left', -$(document).width());
+            $(".tab_box ul").css("width", $(".tab_box ul li").width() * $(".tab_box ul li").length).children('li').css("width", $(document).width() / 3);
+            $('.ar-1').on('tap', function () {
+                $('.tab').css('left', -$(document).width());
+                $('.ar-1').hide();
+                $('.ar-2').show();
+            })
+            $('.ar-2').on('tap', function () {
+                $('.tab').css('left', '0')
+                $('.ar-2').hide();
+                $('.ar-1').show();
+            })
+        }
+        // 导航栏切换 end
+        navigationSet()
+
+        let selectData = JSON.parse(sessionStorage.getItem('halfFull'));
+        let data = JSON.parse(localStorage.getItem('matchData'))
+
+        if (selectData != null) {
+            if (selectData.type == 'pass') { //过关
+                let detail = template('scoresData', data)
+                $('.main.selected ul').html(detail)
+            } else {
+                $('.change-item').eq(1).removeClass("right_ative").siblings().addClass("left_ative");
+                let data = JSON.parse(localStorage.getItem('matchData'))
+                data.matchData.map(_item => {
+                    let singleArr = []
+                    _item.matchInfo.map(val => {
+                        (val.gamePlay['54'] == 3) && singleArr.push(val)
+                    })
+                    _item.matchInfo = singleArr
+                })
+                orderType = 'single'
+                let detail = template('scoresData', data)
+                $('.main.selected ul').html(detail)
+            }
+            $('.scores_bt').map((index, element) => {
+                let id = $(element).data('id');
+                selectData.data.map(ele => {
+                    if (ele.matchUniqueId == id && ele.selectedItem.length > 0) {
+                        let str = '';
+                        ele.selectedItem.map(item => {
+                            str += item.key + ' ';
+                        })
+                        $(element).text(str).css({
+                            backgroundColor: '#d3233c',
+                            color: '#fff'
+                        });
+                        selectedArr.push(ele);
+                    }
+                });
+            });
+            $(".selectSession").text(selectedArr.length);
+            // selectedArr.length >= 2 ? ($('.buy').text('购买')) : ($('.buy').text('至少选择两场'))
+            if (orderType == 'pass') {
+                selectedArr.length >= 2 ? ($('.buy').text('购买')) : ($('.buy').text('至少选择两场'))
+            } else {
+                selectedArr.length >= 1 ? ($('.buy').text('购买')) : ($('.buy').text('至少选择一场'))
+            }
+        } else {
+            // 模板渲染
+            let detail = template('scoresData', data)
+            $('.main.selected ul').html(detail)
+        }
+    </script>
+</body>
+
+</html>

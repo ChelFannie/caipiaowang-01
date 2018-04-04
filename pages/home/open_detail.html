@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>彩票网</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <style>
+        /* tab切换头部 start */
+
+        .wrapper .tab_box {
+            height: 0.88rem;
+            font-size: .28rem;
+            color: #d3233c;
+            background: #ffffff;
+        }
+
+        .wrapper .tab_box .tab {
+            height: 0.58rem;
+            line-height: .58rem;
+            width: 7.1rem;
+            border: 1px solid #d3233c;
+            border-radius: 0.08rem;
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .tab_box .tab li {
+            width: 20%;
+            height: 0.56rem;
+            float: left;
+            font-size: .28rem;
+            border-right: 1px solid #d3233c;
+        }
+
+        .tab_box .tab li:nth-child(5) {
+            border: 0;
+        }
+
+        .tab_box .tab li:nth-child(2) {
+            width: 24%;
+        }
+
+        .tab_box .tab li:nth-child(3) {
+            width: 16%;
+        }
+
+        .wrapper .tab li.left_ative {
+            font-size: .28rem;
+            color: #fff;
+            background: #d3233c;
+            border-top-left-radius: 0.08rem;
+            border-bottom-left-radius: 0.08rem;
+        }
+
+        .wrapper .tab li.mid_ative {
+            font-size: .28rem;
+            color: #fff;
+            background: #d3233c;
+        }
+
+        .wrapper .tab li.right_ative {
+            font-size: .28rem;
+            color: #fff;
+            background: #d3233c;
+            border-top-right-radius: 0.08rem;
+            border-bottom-right-radius: 0.08rem;
+        }
+
+        .wrapper .detail {
+            background: #fff;
+            font-size: .22rem;
+            width: 100%;
+        }
+
+        .wrapper .detail .main {
+            display: none;
+            width: 100%;
+        }
+
+        .wrapper .detail .main.selected {
+            display: block;
+        }
+
+        /* tab切换头部 end*/
+
+        .main .item {
+            overflow: hidden;
+            position: relative;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        .main .item .item_ul {
+            display: none;
+        }
+
+        .main .item .close {
+            position: relative;
+            font-size: .24rem;
+            height: .58rem;
+            line-height: .58rem;
+            text-align: center;
+            background: #dadada;
+            color: #333333;
+        }
+
+        .main .item .close:after {
+            content: '';
+            position: absolute;
+            right: 0.2rem;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            display: inline-block;
+            width: 0.45rem;
+            height: 0.45rem;
+            background: url(../../images/icon.png) no-repeat;
+            background-size: 9rem 4.38rem;
+            background-position: -.86rem -3.7rem;
+        }
+
+        .main .item .close.open:after {
+            content: '';
+            position: absolute;
+            right: 0.2rem;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            display: inline-block;
+            width: 0.45rem;
+            height: 0.45rem;
+            background: url(../../images/icon.png) no-repeat;
+            background-size: 9rem 4.38rem;
+            background-position: -1.76rem -3.7rem;
+        }
+
+        .main .item .dao {
+            width: 100%;
+            background: #eaeaea;
+            overflow: hidden;
+        }
+
+        .main .item .dao span {
+            float: left;
+            text-align: center;
+            display: inline-block;
+            width: 20%;
+            height: .38rem;
+            font-size: .22rem;
+            line-height: .38rem;
+        }
+
+        .main .item .list {
+            width: 100%;
+            background: #ffffff;
+            overflow: hidden;
+            border-bottom: 1px solid #dadada;
+        }
+
+        .main .item .list>div {
+            width: 20%;
+            float: left;
+            height: .79rem;
+            line-height: .79rem;
+            color: #333333;
+            font-size: .22rem;
+            text-align: center;
+        }
+
+        .main .item .list>div:nth-child(1) {
+            line-height: .33rem;
+            padding-top: .09rem;
+        }
+
+        .main .item .list>div>span {
+            color: #999999;
+            font-size: .2rem;
+        }
+
+        .main .item .list>div>span:nth-child(1),
+        .main .item .list>div>var:nth-child(1) {
+            margin-right: .2rem;
+        }
+
+        .main .item .item_ul.selected_ul {
+            display: block;
+            width: 100%;
+        }
+
+        .main .item .list>div>var {
+            font-size: .22rem;
+            color: #d3233c;
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 头部 start -->
+    <header class="navbar-fixed-top clearfix">
+        <!-- <a href="javascript:history.back(-1)" class="return fl">
+            <img src="../../images/back.png">
+            <span>返回</span>
+        </a> -->
+        <p class="fl" style="width:100%;">竞彩足球赛果</p>
+    </header>
+    <div style="height: 0.8rem"></div>
+    <!-- 头部  end -->
+
+    <!-- 开奖详情 start-->
+    <div class="wrapper">
+        <div class="tab_box pr">
+            <ul class="tab clearfix">
+                <li class="tab-item left_ative">胜平负</li>
+                <li class="tab-item">让球胜平负</li>
+                <li class="tab-item">比分</li>
+                <li class="tab-item">总进球</li>
+                <li class="tab-item">半全场</li>
+            </ul>
+        </div>
+        <div class="detail clearfix">
+            <div class="main selected">
+                <!-- 胜平负开奖详情列表 start -->
+                <ul class="clearfix">
+                </ul>
+                <!-- 胜平负开奖详情列表 end -->
+            </div>
+        </div>
+    </div>
+    <!-- 开奖详情 end-->
+    <!-- 底部切换  start-->
+    <div style="height: 0.98rem"></div>
+    <footer class="navbar-fixed-bottom">
+        <a href="../../index.html" title="" class="col-xs-3">
+            <span class="home"></span>
+            <p>首页</p>
+        </a>
+        <a href="../hall/hall.html" title="" class="col-xs-3">
+            <span class="hall"></span>
+            <p>大厅</p>
+        </a>
+        <a href="../home/open_detail.html" title="" class="col-xs-3">
+            <span class="follow_active"></span>
+            <p class="active">开奖</p>
+        </a>
+        <a href="../me/personCenter.html" title="" class="col-xs-3">
+            <span class="me"></span>
+            <p>我的</p>
+        </a>
+    </footer>
+    <!-- 底部切换 end -->
+</body>
+<script type="text/template" id="sfcdetail">
+    <%for(var i =0; i<matchData.length;i++){%>
+        <li class="item">
+            <div class="close <%= i==0?'open':''%>"><%=matchData[i].time%>  共<%=matchData[i].times%>场比赛</div>
+            <ul class="item_ul  <%= i==0?'selected_ul':''%>">
+                <div class="dao">
+                    <span>编号</span>
+                    <span>主队</span>
+                    <span>赛果</span>
+                    <span>客队</span>
+                    <span>奖金</span>
+                </div>
+                <%let infoArr=matchData[i].matchInfo;%>
+                <%for(var j=0;j<infoArr.length;j++){%>
+                    <li class="list" data-id="<%=infoArr[j].matchUniqueId%>">
+                        <div><span><%=infoArr[j].matchTimes%></span><%=infoArr[j].stopSaleTime%><span><%=infoArr[j].matchTime%></span><p><%=infoArr[j].leagueName%></p></div>
+                        <div><%=infoArr[j].host%></div>
+                        <div>
+                            <var><%=infoArr[j].matchResult%></var>
+                            <var><%=infoArr[j].result[num].result%></var>
+                        </div>
+                        <div><%=infoArr[j].guest%></div>
+                        <div><var><%=infoArr[j].result[num].odds%></var></div>
+                    </li>
+                <%}%>
+            </ul>
+        </li>
+    <%}%>    
+</script>
+<script src="../../lib/mui/js/mui.js"></script>
+<script src="../../lib/zepto/zepto.min.js"></script>
+<script src="../../lib/artTemplate/template-native.js"></script>
+<script src="../../js/common.js"></script>
+<script>
+    $(function () {
+        $(".tab li").on('tap', function () {
+            let len = $('.tab-item').length - 1;
+            let currentIndex = $(this).index();
+            if (currentIndex == 0) {
+                $(this).addClass("left_ative").siblings().removeClass("right_ative mid_ative");
+            } else if (currentIndex == len) {
+                $(this).addClass("right_ative").siblings().removeClass("left_ative mid_ative");
+            } else {
+                $(this).addClass("mid_ative").siblings().removeClass("left_ative mid_ative right_ative");
+            }
+            $.each([51,56,52,53,54],function(index,val){
+                if(currentIndex == index){
+                    getData(val);
+                }
+            })  
+        });
+        //赛场列表切换
+        $(".main").on('tap', '.close', function () {
+            if ($(this).hasClass('open')) {
+                $(this).removeClass('open');
+            } else {
+                $(this).addClass('open');
+            }
+            if ($(this).parent('li').siblings().find('ul').hasClass('selected_ul')) {
+                $(this).parent('li').siblings().find('ul').removeClass('selected_ul');
+                $(this).parent('li').siblings().children('.close').removeClass('open');
+            }
+            $(this).siblings('ul').toggleClass('selected_ul');
+        });
+        // 列表渲染
+        getData(51);
+        function getData(num) {
+            $.ajax({
+                // url: 'http://192.168.1.121:10002/matchResult',
+                url: '/matchResult.json',
+                type: 'get',
+                dataType: 'json',
+                success: function (res) {
+                    console.log(res)
+                    res.num = num;
+                    $.each(res.matchData, function (index, element) {
+                        $.each(element.matchInfo, function (idx, ele) {
+                            ele.stopSaleTime = ele.stopSaleTime.substring(11).substring(5, -3);
+                        })
+                    })
+                    let detail = template('sfcdetail', res);
+                    $('.main.selected ul').html(detail);
+                },
+                error: function () {
+                    console.log("获取失败！");
+                }
+            })
+        }
+
+    })
+</script>
+
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>彩票网</title>
+    <link rel="stylesheet" href="../../../css/common.css">
+    <link rel="stylesheet" href="../../../lib/mui/css/mui.css">
+    <link rel="stylesheet" href="../../../css/football.css">
+</head>
+<body>
+    <div class="page-1 page-1-none">
+        <!-- 头部 start -->
+        <header class="navbar-fixed-top clearfix">
+            <a href="../../../index.html" class="return fl">
+                <img src="../../../images/back.png">
+                <span>返回</span>
+            </a>
+        </header>
+        <div style="height: 0.8rem"></div>
+        <!-- 头部  end -->
+
+        <div class="tabbox_change clearfix">
+            <div class="change_detail active">
+                <div class="wrapper">
+                    <div class="tab_box">
+                        <ul class="tab clearfix">
+                            <li class="tab-item"><a href="footballspf.html">足球胜平负</a></li>
+                            <li class="tab-item"><a href="footballrq.html">足球让球胜平负</a></li>
+                            <li class="tab-item active">混合过关</li>
+                            <li class="tab-item"><a href="footballzjq.html">总进球数</a></li>
+                            <li class="tab-item"><a href="footballbf.html">比分</a></li>
+                            <li class="tab-item"><a href="footballbqc.html">半全场</a></li>
+                        </ul>
+                        <span class="ar-1"></span>
+                        <span class="ar-2" style="display: none;"></span>
+                    </div>
+                    <div class="lan" style="height: 0.72rem"></div>
+                    <div class="detail clearfix">
+                        <div class="main selected mix">
+                            <ul id="mixUl">
+                      
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部 start -->
+        <div style="height: 1.2rem"></div>
+        <div class="footer">
+            <button class="del_icon"></button>
+            <div class="order_detail clearfix">
+                <div class="order_word fl">已选择 <span class="selectSession">0</span> 场</div>
+                <button class="order fl buy">至少选择两场</button>
+            </div>
+        </div>
+        <!-- 底部 end -->
+    </div>
+     <!-- 点击混合弹出层 start-->
+     <div class="mask"></div>
+     <div class="content mingle">
+        
+     </div>
+    <!-- 点击混合弹出层 end-->
+    <script src="../../../lib/zepto/zepto.min.js"></script>
+    <script src="../../../lib/mui/js/mui.js"></script>
+    <script src="../../../lib/artTemplate/template-native.js"></script>
+    <script src="../../../js/common.js"></script>
+    <script src="../../../js/tidy.js"></script>
+    <script type="text/template" id="hybridData">
+        <%for(var i =0; i<matchData.length;i++){%>
+            <li class="item">
+                <div class="close  <%= i==0?'open':''%>">
+                    <div class="game_time"><%=matchData[i].date%> <%=matchData[i].week%></div>
+                    <div class="game_total">共
+                        <span class="game_num"><%=matchData[i].times%></span> 场比赛可投注</div>
+                </div>
+                <%let infoArr=matchData[i].matchInfo;%>
+                <ul class="item_ul  <%= i==0?'selected_ul':''%>">
+                    <% for(let j =0; j<infoArr.length; j++){ %>
+                    <li class="list clearfix pr list_mix">
+                        <div class="list_left pr fl">
+                            <p><%=infoArr[j].leagueName%></p>
+                            <p><%=infoArr[j].matchTimes%></p>
+                            <p><%=infoArr[j].stopSaleTime%>截至</p>
+                            <span class="list_arrow"></span>
+                        </div>
+                        <div class="list_mixcenter fl">
+                            <div class="mix_team clearfix">
+                                <span>【客】<%=infoArr[j].guest%></span>
+                                <span>VS</span>
+                                <span>【主】<%=infoArr[j].host%></span>
+                            </div>
+                            <div class="game_type">
+                                <div class="game_type_top clearfix">
+                                    <div class="mix_spf fl">0</div>
+                                    <div class="game_style fl">
+                                        <%if(infoArr[j].odds.winFlatLoss) { %>
+                                            <% for(let k=0; k<infoArr[j].odds.winFlatLoss.length; k++){ %>
+                                                <span class="mix-item game_vs" data-time="<%=infoArr[j].date.substring(11)+infoArr[j].matchTimes%>" data-guest="<%=infoArr[j].guest%>" data-host="<%=infoArr[j].host%>" data-id="<%=infoArr[j].matchUniqueId%>" data-type="winFlatLoss" data-key="<%=infoArr[j].odds.winFlatLoss[k].key%>" data-val="<%=infoArr[j].odds.winFlatLoss[k].val%>"><%=infoArr[j].odds.winFlatLoss[k].key %><%=infoArr[j].odds.winFlatLoss[k].val %></span>
+                                            <%}%>
+                                        <%}%>
+                                    </div>
+                                </div>
+                                <div class="game_type_bottom game_type clearfix">
+                                    <div class="mix_spf fl"><%=infoArr[j].odds.letwinFlatLoss[0]['ssletBall']%></div>
+                                    <div class="game_style fl">
+                                        <%if(infoArr[j].odds.letwinFlatLoss) { %>
+                                            <% for(let k=0; k<infoArr[j].odds.letwinFlatLoss.length; k++){ %>
+                                                <span class="mix-item game_vs" data-time="<%=infoArr[j].date.substring(11)+infoArr[j].matchTimes%>" data-guest="<%=infoArr[j].guest%>" data-host="<%=infoArr[j].host%>" data-id="<%=infoArr[j].matchUniqueId%>" data-type="letwinFlatLoss" data-key="<%=infoArr[j].odds.letwinFlatLoss[k].key%>" data-val="<%=infoArr[j].odds.letwinFlatLoss[k].val%>"><%=infoArr[j].odds.letwinFlatLoss[k].key %><%=infoArr[j].odds.letwinFlatLoss[k].val %></span>
+                                            <%}%>
+                                        <%}%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list_mixright fl" data-id="<%=infoArr[j].matchUniqueId %>">更多<br>选项</div>
+                    </li>
+                    <%}%>
+                </ul>
+            </li>
+        <%}%> 
+    </script>
+    <script type="text/template" id="moreData">
+        <div class="lottery_title"><p>【客】<%=guest%>    VS    【主】<%=host%></p></div>
+        <div class="lottery_contain">
+            <div class="select_box clearfix">
+                <p class="child_title">胜平负</p>
+                <div class="spf">
+                    <div class="w7">0</div>
+                    <%if(odds.winFlatLoss){%>
+                        <% for(let i=0;i<odds.winFlatLoss.length;i++){ %>
+                            <div class="mix-item w31 <%= odds.winFlatLoss[i].select==1?'selected':''%>" data-time="<%= date.substring(11)+matchTimes%>" data-guest="<%=guest%>" data-host="<%=host%>" data-id="<%=matchUniqueId%>" data-type="winFlatLoss" data-key="<%=odds.winFlatLoss[i].key%>" data-val="<%=odds.winFlatLoss[i].val%>"><%=odds.winFlatLoss[i].key%><%=odds.winFlatLoss[i].val%></div>
+                        <%}%>
+                    <%}%>
+                </div>
+                <div class="spf">
+                    <div class="w7 green">-1</div>
+                    <%if(odds.letwinFlatLoss){%>
+                        <% for(let i=0;i<odds.letwinFlatLoss.length;i++){ %>
+                            <div class="mix-item w31 <%= odds.letwinFlatLoss[i].select==1?'selected':''%>" data-time="<%= date.substring(11)+matchTimes%>" data-guest="<%=guest%>" data-host="<%=host%>" data-id="<%=matchUniqueId%>" data-type="letwinFlatLoss" data-key="<%=odds.letwinFlatLoss[i].key%>" data-val="<%=odds.letwinFlatLoss[i].val%>"><%=odds.letwinFlatLoss[i].key%><%=odds.letwinFlatLoss[i].val%></div>
+                        <%}%>
+                    <%}%>
+                </div>
+            </div>
+            <div class="select_box clearfix">
+                <%if(odds.score){%>
+                    <p class="child_title">比分</p>
+                    <div class="sheng">
+                        <p>主胜</p>
+                        <% for(let i=0;i<odds.score.wins.length;i++){ %>
+                            <div class="mix-item list_item_1 <%= odds.score.wins[i].select==1?'selected':''%>" data-time="<%= date.substring(11)+matchTimes%>" data-guest="<%=guest%>" data-host="<%=host%>" data-id="<%=matchUniqueId%>" data-type="score" data-key="<%=odds.score.wins[i].key%>" data-val="<%=odds.score.wins[i].val%>"><p><%=odds.score.wins[i].key%></p><p><%=odds.score.wins[i].val%></p></div>
+                        <%}%>
+                    </div>
+                    <div class="sheng">
+                        <p>平</p>
+                        <% for(let i=0;i<odds.score.draws.length;i++){ %>
+                            <div class="mix-item list_item_1 <%= odds.score.draws[i].select==1?'selected':''%>" data-time="<%= date.substring(11)+matchTimes%>" data-guest="<%=guest%>" data-host="<%=host%>" data-id="<%=matchUniqueId%>" data-type="score" data-key="<%=odds.score.draws[i].key%>" data-val="<%=odds.score.draws[i].val%>"><p><%=odds.score.draws[i].key%></p><p><%=odds.score.draws[i].val%></p></div>
+                        <%}%>
+                    </div>
+                    <div class="sheng">
+                        <p>主负</p>
+                        <% for(let i=0;i<odds.score.losses.length;i++){ %>
+                            <div class="mix-item list_item_1 <%= odds.score.losses[i].select==1?'selected':''%>" data-time="<%= date.substring(11)+matchTimes%>" data-guest="<%=guest%>" data-host="<%=host%>" data-id="<%=matchUniqueId%>" data-type="score" data-key="<%=odds.score.losses[i].key%>" data-val="<%=odds.score.losses[i].val%>"><p><%=odds.score.losses[i].key%></p><p><%=odds.score.losses[i].val%></p></div>
+                        <%}%>
+                    </div>
+                <%}%>
+            </div>
+            <div class="select_box clearfix">
+                <%if(odds.goals){%>
+                    <p class="child_title">总进球</p>
+                    <% for(let i=0;i<odds.goals.length;i++){ %>
+                        <div class="mix-item list_item_1 <%= odds.goals[i].select==1?'selected':''%>" data-time="<%= date.substring(11)+matchTimes%>" data-guest="<%=guest%>" data-host="<%=host%>" data-id="<%=matchUniqueId%>" data-type="goals" data-key="<%=odds.goals[i].key%>" data-val="<%=odds.goals[i].val%>"><p><%=odds.goals[i].key%><i style="<%= i==7?'display:inline-block':'display:none'%>">+</i>球</p><p><%=odds.goals[i].val%></p></div>
+                    <%}%>
+                <%}%>
+            </div>
+            <div class="select_box clearfix">
+                <%if(odds.halfFull){%>
+                    <p class="child_title">半全场</p>
+                    <% for(let i=0;i<odds.halfFull.wins.length;i++){ %>
+                        <div class="mix-item list_item_1 <%= odds.halfFull.wins[i].select==1?'selected':''%>" data-time="<%= date.substring(11)+matchTimes%>" data-guest="<%=guest%>" data-host="<%=host%>" data-id="<%=matchUniqueId%>" data-type="halfFull" data-key="<%=odds.halfFull.wins[i].result%>" data-val="<%=odds.halfFull.wins[i].val%>"><p><%=odds.halfFull.wins[i].result%></p><p><%=odds.halfFull.wins[i].val%></p></div>
+                    <%}%>
+                    <% for(let i=0;i<odds.halfFull.draws.length;i++){ %>
+                        <div class="mix-item list_item_1 <%= odds.halfFull.draws[i].select==1?'selected':''%>" data-time="<%= date.substring(11)+matchTimes%>" data-guest="<%=guest%>" data-host="<%=host%>" data-id="<%=matchUniqueId%>" data-type="halfFull" data-key="<%=odds.halfFull.draws[i].result%>" data-val="<%=odds.halfFull.draws[i].val%>"><p><%=odds.halfFull.draws[i].result%></p><p><%=odds.halfFull.draws[i].val%></p></div>
+                    <%}%>
+                    <% for(let i=0;i<odds.halfFull.losses.length;i++){ %>
+                        <div class="mix-item list_item_1 <%= odds.halfFull.losses[i].select==1?'selected':''%>" data-time="<%= date.substring(11)+matchTimes%>" data-guest="<%=guest%>" data-host="<%=host%>" data-id="<%=matchUniqueId%>" data-type="halfFull" data-key="<%=odds.halfFull.losses[i].result%>" data-val="<%=odds.halfFull.losses[i].val%>"><p><%=odds.halfFull.losses[i].result%></p><p><%=odds.halfFull.losses[i].val%></p></div>
+                    <%}%>
+                <%}%>
+            </div>
+        </div>
+        <div class="lottery_btn mui-button-row">
+            <!-- <button type="button" class="mui-btn mixCancle cancle">取消</button> -->
+            <button type="button" class="mui-btn mixConfirm btn_active" >确认</button>   
+        </div>
+    </script>
+    <script type="text/javascript">
+    // 导航栏切换 start
+    $(".tab_box ul li").css("width",$(document).width()/3);
+    $(".tab_box ul").css("width",$(".tab_box ul li").width()*$(".tab_box ul li").length);
+    $('.ar-1').on('tap', function(){
+        $('.tab').css('left',-$(document).width());
+        $('.ar-1').hide();
+        $('.ar-2').show();
+
+    })
+    $('.ar-2').on('tap', function(){
+        $('.tab').css('left','0')
+        $('.ar-2').hide();
+        $('.ar-1').show();
+
+    })
+    // 导航栏切换 end
+
+    // 展开场次
+    $(document).on('tap', '.close',function () {
+        $(this).hasClass('open') ? $(this).removeClass('open') : $(this).addClass('open')
+        $(this).parent('li').siblings().find('ul').hasClass('selected_ul')
+        ?
+        $(this).parent('li').siblings().children('.close').removeClass('open').parent().find('ul').removeClass('selected_ul')
+        : ''
+        $(this).siblings('ul').toggleClass('selected_ul')       
+    })
+    
+
+    let data = JSON.parse(localStorage.getItem('matchData'))
+    
+    let detail = template('hybridData', data)
+    $('#mixUl').html(detail)
+    // console.log(data)
+    let moreThis = 0
+    // 更多选项
+    $(".list_mixright").on("tap", function () {
+        // console.log(this)
+        // $(this).addClass('selected')
+        $(".mingle").show()
+        $(".mask").show()
+        moreThis = $(this)
+        let data = JSON.parse(localStorage.getItem('matchData'))
+        data.matchData.map(_dataItem => {
+            _dataItem.matchInfo.map(_infoItem => {
+                if (_infoItem.matchUniqueId === $(this).data('id') ){
+                    if (selectData.length != 0){
+                        selectData.map((val, idx) => {
+                            val.map(val1 => {
+                                if(_infoItem.matchUniqueId == val1.id) {
+                                    if(val1.type != 'halfFull' && val1.type != 'score') {
+                                        _infoItem.odds[val1.type].map(val2 => {
+                                            if (val2.key == val1.key) {
+                                                val2['select'] = '1'
+                                            }
+                                        })
+                                    } else {
+                                        for(let key in _infoItem.odds[val1.type]) {
+                                            _infoItem.odds[val1.type][key].map(val2 => {
+                                                if (val2.key == val1.key) {
+                                                    val2['select'] = '1'
+                                                }
+                                            })
+                                        }
+                                    } 
+                                }
+                                let detail = template('moreData', _infoItem)
+                                $('.mingle').html(detail)  
+                            })
+                        })
+                    } else {
+                        let detail = template('moreData', _infoItem)
+                        $('.mingle').html(detail) 
+                    }
+                }
+            })
+        })
+    })
+
+    let selectData = [] //存储多场赛事的全部数据
+    let selectArr = [] //储存单场数据
+    // 混合界面与弹出框界面子选项选中
+    $(document).on('tap', '.mix-item',function () {
+        let obj = { id: $(this).data('id'),
+                    type: $(this).data('type'),
+                    key: $(this).data('key'),
+                    val: $(this).data('val'),
+                    guest: $(this).data('guest'),
+                    host: $(this).data('host'),
+                    time: $(this).data('time')
+                }
+        // 取消选择
+        if($(this).hasClass('selected')) {
+            $(this).removeClass('selected')
+            let idxArr = []
+            // 在总数组中把该条记录删掉
+            selectData.map((val1, idx1) => {
+                val1.map((val2, idx2) => {
+                    if (val2.id == $(this).data('id') && val2.key == $(this).data('key')) {
+                        idxArr.push(idx1)
+                        idxArr.push(idx2)
+                        selectArr = []
+                        selectArr = val1
+                    }
+                })
+            })
+            if (selectData.length == 1 && selectData[0].length == 1) {
+                selectData.splice(0,1)
+                selectArr = []
+            } else if (selectData[idxArr[0]].length == 1) {
+                selectData.splice(idxArr[0], 1)
+                selectArr = []
+            } else {
+                selectData[idxArr[0]].splice(idxArr[1], 1)
+            }
+
+        } else { //选择
+            if (!selectArr.length) {
+                selectArr.push(obj)
+                // selectData.push(selectArr)
+            } else {
+                // 把当前点击的数据在selectData获取赋值给selectArr
+                selectData.length > 1 && selectData.map(val => {
+                    val.map(val1 => {
+                        if (val1.id == $(this).data('id')) {
+                            selectArr = []
+                            selectArr = val
+                        }
+                    })
+                })
+                let flag = false
+                // 该场赛事是否已选一种玩法
+                selectData.length > 1 && selectData.map(val => {
+                    val.map(val1 => {
+                        if (val1.id == $(this).data('id') && val1.type != $(this).data('type')) {
+                            flag = true
+                        }
+                    })
+                })
+                if (flag) {
+                    mui.alert('一场赛事只能选择一种玩法')
+                    return
+                }
+                if (selectArr[0].id == $(this).data('id')) {
+                    if(selectArr[0].type == $(this).data('type')) {
+                        selectArr.push(obj)
+                    } else {
+                        mui.alert('一场赛事只能选择一种玩法')
+                        return
+                    }
+                } else {
+                    selectArr = []
+                    selectArr.push(obj)
+                }
+                
+            }
+            selectData.push(selectArr)
+            $(this).addClass('selected')
+            let idxArr = []
+            // 数组去重
+            selectData.length > 1 && selectData.map((val, idx) => {
+                val[0].id == $(this).data('id') ? (idxArr.push(idx)) : ''
+            })
+            idxArr.length>1 ? (selectData.splice(idxArr[0], 1)) : ''
+        }
+        if (selectData.length > 8) {
+            selectData.splice(selectData.length - 1, 1)
+            $(this).removeClass('selected')
+            mui.alert('最多选择8场赛事')
+        }
+        $(".selectSession").text(selectData.length)
+        selectData.length > 1 ? $(".buy").text('购买') : $(".buy").text('至少选择两场')
+    })
+    // 弹出框取消
+    $(document).on('tap', ".mixCancle", function () {
+        $(".mingle").hide()
+        $(".mask").hide()
+    })
+
+    // 弹出框确定
+    $(document).on('tap', ".mixConfirm", function () {
+        $(".mingle").hide()
+        $(".mask").hide()
+        let node = moreThis.siblings().children().children('div').children().children()
+        let flag = false
+        node.map((idx, val) => {
+            $(val).removeClass('selected')
+        })
+        // 判断是否是胜平负的选中了，如果是要加class
+        selectData.map(item => {
+            item.map(val => {
+                node.map((idx, val1) => {
+                    if (val.id == $(val1).data('id') && val.type == $(val1).data('type') && val.key == $(val1).data('key')) {
+                        $(val1).addClass('selected')
+                        flag = true
+                    } 
+                })
+            })
+        })
+        flag ? moreThis.removeClass('selected') : moreThis.addClass('selected')
+        selectArr.length == 0 ? moreThis.removeClass('selected') : ''
+    })
+    // 购买
+    $('.buy').on('tap', function () {
+        let flag = true, surpass = 0
+        for(let i=0, len=selectData.length; i<len; i++) {
+            if(i < selectData.length-1 && selectData[i][0].type != selectData[i+1][0].type) {
+                flag = false
+            }
+            if(selectData[i][0].type == 'score' || selectData[i][0].type == 'halfFull') {
+                len > 4 && (surpass = 1)
+            }
+        }
+        if (selectData.length < 2 || flag) {
+            flag && mui.alert('不能全部赛事选择同一种玩法')
+            return
+        }
+        let mix = {surpass: surpass,
+            data: selectData,
+            lotteryType: '51',
+            subPlayType: '59'}
+        sessionStorage.setItem('mix', JSON.stringify(mix))
+        // console.log(surpass)
+        location.href = 'buy_footballmix.html';
+    })
+    // 删除
+    $('.del_icon').on('tap', function () {
+        selectData = []
+        selectArr = []
+        $(".selectSession").text('0')
+        $(".buy").text('至少选择两场') 
+        $(".mix-item").map((idx, val) => {
+            $(val).removeClass('selected')
+        })
+    })
+    let mixData = JSON.parse(sessionStorage.getItem('mix'));
+    // let mixData = mixData.data 
+    
+    if(mixData != null || mixData != undefined){
+        selectData = mixData.data 
+        $('.mix-item').map((index, element) => {
+            let id=$(element).data('id');
+            selectData.map(val => {
+                selectArr = val
+                val.map(val1 => {
+                    if(id == val1.id && val1.key == $(element).data('key') &&  val1.type == $(element).data('type') ) {
+                        $(element).addClass('selected')
+                    }
+                    if(id == val1.id && val1.type != 'letwinFlatLoss' && val1.type != 'winFlatLoss') {
+                        $('.list_mixright').map((idx, ele) => {
+                            if(id == $(ele).data('id')) {
+                                $(ele).addClass('selected')
+                            }
+                        })
+                    }
+                })
+            })
+            
+        });
+        $(".selectSession").text(selectData.length);
+        selectData.length >= 2 ? ($('.buy').text('购买')) : ($('.buy').text('至少选择两场'))
+    }
+    </script>
+</body>
+
+</html>

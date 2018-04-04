@@ -1,0 +1,399 @@
+/* 屏幕适配 */
+
+@media only screen and (max-width: 1024px),
+only screen and (max-device-width: 1024px) {
+    html,
+    body {
+        font-size: 136.53333333333333px;
+    }
+}
+
+@media only screen and (max-width: 1080px),
+only screen and (max-device-width: 1080px) {
+    html,
+    body {
+        font-size: 144px;
+    }
+}
+
+@media only screen and (max-width: 960px),
+only screen and (max-device-width: 960px) {
+    html,
+    body {
+        font-size: 128px;
+    }
+}
+
+@media only screen and (max-width: 800px),
+only screen and (max-device-width: 800px) {
+    html,
+    body {
+        font-size: 106.666667px;
+    }
+}
+
+@media only screen and (max-width: 768px),
+only screen and (max-device-width: 768px) {
+    html,
+    body {
+        font-size: 102.4px;
+    }
+}
+
+@media only screen and (max-width: 750px),
+only screen and (max-device-width: 750px) {
+    html,
+    body {
+        font-size: 100px;
+    }
+}
+
+@media only screen and (max-width: 720px),
+only screen and (max-device-width: 720px) {
+    html,
+    body {
+        font-size: 96px;
+    }
+}
+
+@media only screen and (max-width: 640px),
+only screen and (max-device-width: 640px) {
+    html,
+    body {
+        font-size: 85.333333px;
+    }
+}
+
+@media only screen and (max-width: 600px),
+only screen and (max-device-width: 600px) {
+    html,
+    body {
+        font-size: 80px;
+    }
+}
+
+@media only screen and (max-width: 540px),
+only screen and (max-device-width: 540px) {
+    html,
+    body {
+        font-size: 72px;
+    }
+}
+
+@media only screen and (max-width: 480px),
+only screen and (max-device-width: 480px) {
+    html,
+    body {
+        font-size: 64px;
+    }
+}
+
+@media only screen and (max-width: 414px),
+only screen and (max-device-width: 414px) {
+    html,
+    body {
+        font-size: 55.2px;
+    }
+}
+
+@media only screen and (max-width: 412px),
+only screen and (max-device-width: 412px) {
+    html,
+    body {
+        font-size: 54.93333px;
+    }
+}
+
+@media only screen and (max-width: 400px),
+only screen and (max-device-width: 400px) {
+    html,
+    body {
+        font-size: 53.3333px;
+    }
+}
+
+@media only screen and (max-width: 384px),
+only screen and (max-device-width: 384px) {
+    html,
+    body {
+        font-size: 51.2px;
+    }
+}
+
+@media only screen and (max-width: 375px),
+only screen and (max-device-width: 375px) {
+    html,
+    body {
+        font-size: 50px;
+    }
+}
+
+@media only screen and (max-width: 360px),
+only screen and (max-device-width: 360px) {
+    html,
+    body {
+        font-size: 48px;
+    }
+}
+
+@media only screen and (max-width: 320px),
+only screen and (max-device-width: 320px) {
+    html,
+    body {
+        font-size: 42.66667px;
+    }
+}
+
+@media only screen and (max-width: 240px),
+only screen and (max-device-width: 240px) {
+    html,
+    body {
+        font-size: 32px;
+    }
+}
+
+.disabledTab {
+    pointer-events: none;
+}
+
+
+/* 初始化开始 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.clearfix:after {
+    content: '';
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
+img {
+    /*清楚默认的3px*/
+    display: block;
+    /*width: 100%;*/
+    max-height: 100%;
+    max-width: 100%;
+}
+
+button {
+    outline: none;
+    border: none;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.pr {
+    position: relative;
+}
+
+
+/* 初始化结束 */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    background: #f6f6f6!important;
+}
+
+
+/*头部 start*/
+
+header {
+    padding: 0 0.2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    background: #d3233c;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+header .return {
+    padding-left: 0.3rem;
+    width: 20%;
+    position: relative;
+    font-size: 0.28rem;
+    display: inline-block;
+    left: 0.1rem;
+    color: #ffffff;
+}
+
+header .return img {
+    display: inline-block;
+    height: 0.4rem;
+    width: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: 0;
+}
+
+header p {
+    width: 60%;
+    text-align: center;
+    font-size: 0.32rem;
+}
+
+
+/*头部 end*/
+
+
+/*底部 start*/
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 0.98rem;
+    border-top: 1px solid #ddd;
+    background: #ffffff;
+}
+
+footer .col-xs-3 {
+    width: 25%;
+    float: left;
+    display: block;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    position: relative;
+    height: 0.98rem;
+}
+
+footer a span {
+    width: 0.5rem;
+    height: 0.5rem;
+    display: inline-block;
+    position: absolute;
+    z-index: 10;
+    background: url(../images/icon.png) no-repeat;
+    background-size: 9rem 4.38rem;
+    left: 0;
+    right: 0;
+    top: 0.05rem;
+    margin: auto;
+}
+
+footer a span.home {
+    background-position: -0.08rem -2.45rem;
+}
+
+footer a span.home_active {
+    background-position: -0.08rem -1.84rem;
+}
+
+footer a span.hall {
+    background-position: -0.88rem -2.45rem;
+}
+
+footer a span.hall_active {
+    background-position: -0.88rem -1.84rem;
+}
+
+footer a span.follow {
+    background-position: -1.78rem -2.45rem;
+}
+
+footer a span.follow_active {
+    background-position: -1.78rem -1.84rem;
+}
+
+footer a span.me {
+    background-position: -2.62rem -2.45rem;
+}
+
+footer a span.me_active {
+    background-position: -2.62rem -1.84rem;
+}
+
+footer a p.active {
+    color: #d3233c;
+}
+
+footer a p {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.05rem;
+    margin: auto;
+    width: 100%;
+    height: .4rem;
+    line-height: .4rem;
+    text-align: center;
+    font-size: 0.22rem;
+    color: #666666;
+}
+
+
+/*底部 end*/
+
+
+/*精灵图统一*/
+
+.sprit:before {
+    display: inline-block;
+    content: '';
+    background: url(../images/icon.png) no-repeat;
+    background-size: 9rem 4.38rem;
+}
+
+
+/* 提交 登 录 按钮 */
+
+.btn {
+    width: 5.2rem;
+    height: 0.8rem;
+    line-height: .8rem;
+    color: #fff;
+    background-color: #d3233c;
+    font-size: .32rem;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 0.08rem;
+}
+
+
+/*文字超出省略*/
+
+.textelli {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    text-overflow: ellipsis;
+}

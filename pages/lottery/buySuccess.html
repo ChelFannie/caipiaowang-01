@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>彩票网</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <style>
+        .header_info{
+            width: 100%;
+            height: 3.4rem;
+            color: #333;
+            font-size: .28rem;
+            text-align: center;
+            padding: .3rem 0;
+        }
+        .header_info img{
+            width: 1.2rem;
+            margin: auto;
+            margin-bottom: .3rem;
+        }
+        .header_info p:first-of-type {
+            line-height: .32rem;
+            margin-bottom: .3rem;
+        }
+        .header_info p:last-child {
+            font-size: .24rem;
+            color: #666;
+        }
+        .menu_nav li {
+            height: 0.9rem;
+            line-height: .88rem;
+            font-size: .28rem;
+            background: #fff;
+            position: relative;
+        }
+
+        .menu_nav li a {
+            display: block;
+            padding: 0 .2rem;
+        }
+
+        .menu_nav li a::after {
+            content: '';
+            width: .17rem;
+            height: .29rem;
+            position: absolute;
+            top: .31rem;
+            right: .2rem;
+            background-image: url('../../images/icon.png');
+            background-size: 9rem 4.38rem;
+            background-position: -6.96rem -3.19rem;
+        }
+
+        .menu_nav li:nth-child(-n+3) {
+            border-bottom: 1px solid #dadada;
+        }
+        .btn{
+            margin-top: .4rem;
+        }
+        .btn a{
+            display: block;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header_info">
+        <img src="../../images/success.png" alt="">
+        <p>恭喜您！购买成功~</p>
+        <p>方案编号：<span class="orderNum"></span></p>
+    </div>
+    <!-- 菜单导航 start -->
+    <div class="menu_nav">
+        <ul>
+            <li>
+                <a href="../../index.html">继续购买</a>
+            </li>
+            <li>
+                <a href="../me/buydetail.html">购彩记录</a>
+            </li>
+            <li>
+                <a href="../me/personCenter.html">账号中心</a>
+            </li>
+        </ul>
+    </div>
+    <div class="btn"><a href="../hall/hall.html">返回购彩大厅</a></div>
+</body>
+<script src="../../lib/zepto/zepto.min.js"></script>
+<script src="../../lib/mui/js/mui.min.js"></script>
+<script>
+    let orderNum= JSON.parse(sessionStorage.getItem('orderNum'));
+    $('.header_info .orderNum').text(orderNum);
+    $('.btn').on('tap',function(){
+        sessionStorage.removeItem('orderNum');
+    });
+</script>
+</html>

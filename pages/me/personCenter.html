@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>彩票网</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <style>
+        /* 已登录样式 */
+        .oklogin{
+            display: none;
+        }
+        .header 
+        
+        {
+            height: 2rem;
+            background: #d3233c;
+            font-size: .32rem;
+            padding-left: .28rem;
+            color: #fff;
+            line-height: 2rem;
+        }
+
+        .header span.header_circle {
+            display: inline-block;
+            width: 1.4rem;
+            height: 1.4rem;
+            background: #f4f4f4;
+            border-radius: 50%;
+            margin-right: .3rem;
+            vertical-align: middle;
+        }
+
+        nav {
+            margin: .2rem 0;
+            height: 1.2rem;
+            background: #fff;
+        }
+
+        nav ul {
+            padding: .2rem 0;
+        }
+
+        nav ul li {
+            float: left;
+            width: 25%;
+            font-size: .28rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        nav li span {
+            display: inline-block;
+            height: .45rem;
+        }
+
+        nav li .nav_moneyNum {
+            display: inline-block;
+            color: #d3233c;
+        }
+
+        nav a {
+            display: block;
+        }
+
+        nav a span {
+            width: 0.45rem;
+            height: 0.35rem;
+            background: url('../../images/icon.png') no-repeat;
+            background-size: 9rem 4.38rem;
+        }
+
+        nav a span.nav_icon1 {
+            background-position: -0.09rem -3.14rem;
+        }
+
+        nav a span.nav_icon2 {
+            height: 0.38rem;
+            background-position: -.88rem -3.14rem;
+        }
+
+        .menu_nav li {
+            height: 0.9rem;
+            line-height: .9rem;
+            font-size: .28rem;
+            background: #fff;
+            
+            position: relative;
+        }
+
+        .menu_nav li a {
+            display: block;
+            height: 0.9rem;
+            line-height: .9rem;
+            padding: 0 .2rem;
+        }
+        .menu_nav li>div {
+            display: block;
+            height: 0.9rem;
+            line-height: .9rem;
+            padding: 0 .2rem;
+        }
+
+        .menu_nav li a::after,#gotoPerson::after{
+            content: '';
+            width: .17rem;
+            height: .29rem;
+            position: absolute;
+            top: .31rem;
+            right: .2rem;
+            background-image: url('../../images/icon.png');
+            background-size: 9rem 4.38rem;
+            background-position: -6.96rem -3.19rem;
+        }
+        .menu_nav li:nth-child(-n+3) {
+            border-bottom: 1px solid #dadada;
+        }
+        .menu_nav li:nth-child(-n+5) span {
+            margin-right: .3rem;
+            display: inline-block;
+            width: 0.5rem;
+            height: 0.5rem;
+            vertical-align: middle;
+            background: url('../../images/icon.png') no-repeat;
+            background-size: 9rem 4.38rem;
+        }
+        .menu_nav li.one span {
+            background-position: -1.76rem -3.07rem;
+        }
+        .menu_nav li.two span {
+            background-position: -2.62rem -3.07rem;
+        }
+        .menu_nav li.five span {
+            background-position: -5.32rem -3.07rem;
+        }
+        .menu_nav li.five {
+            margin-bottom: .4rem;
+        }
+
+        .menu_nav li.exit{
+            text-align: center;
+            color: #d3233c;
+        }
+        /* 未登录样式 */
+        .notlogin {
+            display: none;
+        }
+        .notlogin .go-login{
+            display: block;
+        }
+        .notlogin .lan{
+            height: .8rem;
+        }
+        .notlogin img {
+            width: 5.22rem;
+            margin: 0 auto .6rem;
+        }
+
+        .notlogin .regist {
+            text-align: center;
+            color: #666;
+            font-size: .28rem;
+            margin: .3rem auto 1.8rem;
+        }
+
+        .notlogin .regist a {
+            color: #d3233c;
+        }
+
+        .notlogin .change_admin {
+            color: #999;
+            font-size: .22rem;
+            margin: 0 .2rem;
+            margin-bottom: .3rem;
+        }
+
+        .notlogin .change_admin span {
+            display: inline-block;
+            width: 2.5rem;
+            height: 1px;
+            margin-bottom: .11rem;
+            background: #dadada;
+        }
+
+        .notlogin .login_type {
+            margin-left: 1rem;
+        }
+
+        .notlogin .login_type a {
+            text-align: center;
+            float: left;
+            width: 2.5rem;
+            height: 0.68rem;
+            line-height: .68rem;
+            border: 1px solid #dadada;
+            border-radius: 8px;
+            color: #333;
+            font-size: .28rem;
+            margin-right: .4rem;
+        }
+
+        .notlogin .login_type span {
+            display: inline-block;
+            margin-right: .20rem;
+            background: url('../../images/icon.png') no-repeat;
+            background-size: 9rem 4.38rem;
+            vertical-align: middle;
+        }
+
+        .notlogin .login_type .login_weixin {
+            width: .45rem;
+            height: .42rem;
+            background-position: -7.19rem -1.90rem;
+        }
+
+        .notlogin .login_type .login_QQ {
+            width: .41rem;
+            height: .45rem;
+            background-position: -8.06rem -1.89rem;
+        }
+    </style>
+</head>
+
+<body>
+<!-- 已登录页 start -->
+<div class="oklogin">
+    <div class="header">
+        <span class="header_circle"></span><span id="username"></span>
+    </div>
+    <!-- 金额导航 start -->
+    <nav>
+        <ul class="clearfix">
+            <li>
+                <span class="nav_moneyNum">0</span>
+                <p>余额</p>
+            </li>
+            <li>
+                <span class="nav_moneyNum">0</span>
+                <p>彩金</p>
+            </li>
+            <li>
+                <a href="###">
+                    <span class="nav_icon1"></span>
+                    <p>充值</p>
+                </a>
+            </li>
+            <li>
+                <a href="###">
+                    <span class="nav_icon2"></span>
+                    <p>提现</p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- 金额导航 end -->
+    <!-- 菜单导航 start -->
+    <div class="menu_nav">
+        <ul>
+            <li class="one">
+                <a href="personal.html"><span></span>个人资料</a>
+            </li>
+            <li class="two">
+                <a href="buydetail.html">
+                    <span></span>购彩记录</a>
+            </li>
+            <li class="five">
+                <a href="changepwd.html">
+                <span></span>修改密码</a>
+            </li>
+            <li class="exit">
+                <a href="./user_login.html">退出登录</a>
+            </li>
+        </ul>
+    </div>
+    <!-- 菜单导航 end -->
+    <div style="height: 0.98rem"></div>
+    <!-- 底部切换  start-->
+    <div style="height: 0.98rem"></div>
+    <footer class="navbar-fixed-bottom">
+        <a href="../../index.html" title="" class="col-xs-3">
+            <span class="home"></span>
+            <p>首页</p>
+        </a>
+        <a href="../hall/hall.html" title="" class="col-xs-3">
+            <span class="hall"></span>
+            <p>大厅</p>
+        </a>
+        <a href="../../pages/home/open_detail.html" title="" class="col-xs-3">
+            <span class="follow"></span>
+            <p >开奖</p>
+        </a>
+        <a href="../me/personCenter.html" title="" class="col-xs-3">
+            <span class="me_active"></span>
+            <p class="active">我的</p>
+        </a>
+    </footer>
+    <!-- 底部切换 end -->
+</div>
+<!-- 已登录页 end  -->
+
+<!-- 未登录页 start -->
+<div class="notlogin">
+    <div class="lan"></div>
+    <img src="../../images/login.png" alt="">
+    <a class="btn go-login" href="./user_login.html">立即登录</a>
+    <div class="regist">已有账号？
+        <a href="regist_one.html">立马注册&gt;</a>
+    </div>
+    <!-- 底部切换  start-->
+    <footer class="navbar-fixed-bottom">
+        <a href="../../index.html" title="" class="col-xs-3">
+            <span class="home"></span>
+            <p>首页</p>
+        </a>
+        <a href="../hall/hall.html" title="" class="col-xs-3">
+            <span class="hall"></span>
+            <p>大厅</p>
+        </a>
+        <a href="../../pages/home/open_detail.html" title="" class="col-xs-3">
+            <span class="follow"></span>
+            <p >开奖</p>
+        </a>
+        <a href="../me/personCenter.html" title="" class="col-xs-3">
+            <span class="me_active"></span>
+            <p class="active">我的</p>
+        </a>
+    </footer>
+    <!-- 底部切换 end -->
+</div>
+<!-- 未登录页 end -->
+<script src="../../lib/zepto/zepto.min.js"></script>
+<script src="../../js/common.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    let token=window.sessionStorage.getItem("token")
+    if(token){
+        $('.notlogin').hide()
+        $('.oklogin').show()
+    }else{
+        $('.notlogin').show()
+        $('.oklogin').hide()
+    }
+    // 个人信息请求 
+    $.ajax({
+        type: "POST",
+        url: "http://192.168.28.30:9731/member/info",
+        // url: "/member/info.json",
+        dataType:"json",
+        beforeSend: function(request) {
+            let token=window.sessionStorage.getItem("token")
+            request.setRequestHeader("token",token)
+        },
+        success: function(result) {
+            console.log(result)
+            $('#username').html(result.data.memberName)
+            localStorage.setItem('menberInfo',JSON.stringify(result))
+        }
+    });
+});
+</script>
+</body>
+
+</html>

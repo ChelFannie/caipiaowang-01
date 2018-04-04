@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>彩票网</title>
+    <link rel="stylesheet" href="../../../css/common.css">
+    <link rel="stylesheet" href="../../../lib/mui/css/mui.css">
+    <link rel="stylesheet" href="../../../css/football.css">
+</head>
+
+<body>
+    <div class="page-1 page-1-none">
+        <!-- 头部 start -->
+        <header class="navbar-fixed-top clearfix">
+            <a href="../../../index.html" class="return fl">
+                <img src="../../../images/back.png">
+                <span>返回</span>
+            </a>
+            <div class="change_box fl">
+                <ul class="change clearfix">
+                    <li class="change-item fl" data-type ="pass">过关</li>
+                    <li class="change-item fr right_ative" data-type ="single">单关</li>
+                </ul>
+            </div>
+        </header>
+        <div style="height: 0.8rem"></div>
+        <!-- 头部  end -->
+
+        <div class="tabbox_change clearfix">
+            <div class="change_detail active">
+                <!-- 过关方式 start-->
+                <div class="wrapper">
+                    <div class="tab_box">
+                        <ul class="tab clearfix">
+                            <li class="tab-item"><a href="footballspf.html">足球胜平负</a></li>
+                            <li class="tab-item active">足球让球胜平负</li>
+                            <li class="tab-item"><a href="footballmix.html">混合过关</a></li>
+                            <li class="tab-item"><a href="footballzjq.html">总进球数</a></li>
+                            <li class="tab-item"><a href="footballbf.html">比分</a></li>
+                            <li class="tab-item"><a href="footballbqc.html">半全场</a></li>
+                        </ul>
+                        <span class="ar-1"></span>
+                        <span class="ar-2" style="display: none;"></span>
+                    </div>
+                    <div class="lan" style="height: 0.72rem"></div>
+                    <div class="detail clearfix">
+                        <!-- 让球胜平负详情列表 start -->
+                        <div class="main selected">
+                            <ul>
+                            </ul>
+                        </div>
+                    <!-- 让球胜平负详情列表 end -->
+                    </div>
+                </div>
+                <!-- 过关方式 end-->
+            </div>
+        </div>
+
+        <!-- 底部 start -->
+        <div style="height: 1.2rem"></div>
+        <div class="footer">
+            <button class="del_icon"></button>
+            <div class="order_detail clearfix">
+                <div class="order_word fl">已选择 <span>0</span> 场</div>
+                <button class="order fl">至少选择两场</button>
+            </div>
+        </div>
+        <!-- 底部 end -->
+    </div>
+    <script src="../../../lib/zepto/zepto.min.js"></script>
+    <script src="../../../lib/mui/js/mui.js"></script>
+    <script src="../../../lib/artTemplate/template-native.js"></script>
+    <script src="../../../js/common.js"></script>
+    <script src="../../../js/football/footballspf.js"></script>
+    <script type="text/template" id="rqData">
+        <%for(var i =0; i<matchData.length;i++){%>
+            <%let infoArr=matchData[i].matchInfo;%>
+            <%if(infoArr.length>0){%>
+            <li class="item">
+                    <div class="close <%= i==0?'open':''%>">
+                    <div class="game_time"><%=matchData[i].date%> <%=matchData[i].week%></div>
+                    <div class="game_total">共
+                        <span class="game_num"><%=infoArr.length%></span> 场比赛可投注</div>
+                </div>
+                
+                <ul class="item_ul <%= i==0?'selected_ul':''%>">
+                    <%for(var j =0; j<infoArr.length;j++){%>
+                        <%if(infoArr[j].odds.s56){%>
+                            <li class="list clearfix pr" data-matchUniqueId="<%=infoArr[j].matchUniqueId%>" data-lotteryType='51' data-subPlayType='56' data-host="<%=infoArr[j].host%>" data-guest="<%=infoArr[j].guest%>" data-odds0="<%=infoArr[j].odds.s56.ss0%>" data-odds1="<%=infoArr[j].odds.s56.ss1%>" data-odds3="<%=infoArr[j].odds.s56.ss3%>" data-date="<%=matchData[i].date%>" data-week="<%=matchData[i].week%>" data-matchTimes="<%=infoArr[j].matchTimes%>" data-type="<%= type%>">
+                            <div class="list_left pr fl">
+                                <p><%=infoArr[j].leagueName%></p>
+                                <p><%=infoArr[j].matchTimes%></p>
+                                <p><%=infoArr[j].stopSaleTime%>截至</p>
+                                <span class="list_arrow"></span>
+                            </div>
+                            <div class="list_rang"><%=infoArr[j].odds.s56.ssletBall%></div>
+                            <div class="list_right fr" style="width: 74.6%;">
+                                <div class="list_item_1 list_win <%=infoArr[j].firstindex==1?'selected':''%>" data-status="<%=infoArr[j].firstindex==1?'1':'0'%>">
+                                    <p><%=infoArr[j].host%></p>
+                                    <p>主胜<%=infoArr[j].odds.s56.ss3%></p>
+                                </div>
+                                <div class="list_item_1 list_item_vs <%=infoArr[j].secindex==1?'selected':''%>" data-status="<%=infoArr[j].secindex==1?'1':'0'%>">
+                                    <p>VS</p>
+                                    <p>平<%=infoArr[j].odds.s56.ss1%></p>
+                                </div>
+                                <div class="list_item_1 list_lose <%=infoArr[j].thirdindex==1?'selected':''%>" data-status="<%=infoArr[j].thirdindex==1?'1':'0'%>">
+                                    <p><%=infoArr[j].guest%></p>
+                                    <p>主负<%=infoArr[j].odds.s56.ss0%></p>
+                                </div>
+                            </div>
+                        </li>
+                        <%}%>     
+                    <%}%>
+                </ul>
+            </li>
+            <%}%> 
+        <%}%> 
+    </script>
+    <script>
+    /*导航栏切换 start*/
+        $(".tab_box ul li").css("width",$(document).width()/3);
+        $(".tab_box ul").css("width",$(".tab_box ul li").width()*$(".tab_box ul li").length);
+        $('.ar-1').on('tap', function(){
+            $('.tab').css('left',-$(document).width());
+            $('.ar-1').hide();
+            $('.ar-2').show();
+
+        })
+        $('.ar-2').on('tap', function(){
+            $('.tab').css('left','0')
+            $('.ar-2').hide();
+            $('.ar-1').show();
+
+        })
+    /*导航栏切换 end*/
+    // 模板渲染
+        showPassData();
+        // if (location.search.indexOf('pass') > -1) {
+        //     showPassData();
+        // } else if (location.search.indexOf('single') > -1) {
+        //     let single = showSingleData();
+        //     let detail = template('rqData', single);
+        //     $('.main.selected ul').html(detail);
+        //     $('.change-item').eq(0).addClass('left_ative').siblings().removeClass('right_ative');
+        // } else {
+        //     showPassData();
+        // }
+
+        $('.change-item').on('tap', function () {
+            selectData = JSON.parse(sessionStorage.getItem('spfdataArr'));
+            let index = $(this).index();
+            _this = $(this);
+            if (!selectData) {
+                tabChangebg(index, _this);
+                if (index == 0) {
+                    $('.order_detail .order').text('至少选择两场');
+                    $('.selectSession').text(0);
+                    showPassData();
+                } else {
+                        $('.order_detail .order').text('至少选择一场');
+                        $('.selectSession').text(0);
+                    let single = showSingleData();
+                    let flag = false;
+                    for(let i=0; i< single.matchData.length;i++){
+                        if(single.matchData[i].matchInfo.length > 0){
+                            flag = true;
+                            break;
+                        }
+                    }
+                    if(flag){
+                        let detail = template('rqData', single);
+                        $('.main.selected ul').html(detail);
+                    }else{
+                        mui.alert('此彩种暂无单关玩法');
+                        _this.addClass('right_ative').siblings().removeClass('left_ative');
+                    }
+                }
+            } else {
+                if ($(this).data('type') != selectData[0].type) {
+                    $('.list_item_1').removeClass('selected');
+                    sessionStorage.removeItem('spfdataArr');
+                    sessionStorage.removeItem('spqfSecObj');
+                    if ($(this).data('type') == 'single') {
+                        $('.change-item').eq(1).removeClass("right_ative").siblings().addClass("left_ative");
+                        let single = showSingleData();
+                        let detail = template('rqData', single);
+                        $('.main.selected ul').html(detail);
+                    } else {
+                        $('.change-item').eq(0).removeClass("left_ative").siblings().addClass("right_ative");
+                        showPassData();
+                    }
+                }
+            }
+        });
+
+        function showPassData() {
+            let data = JSON.parse(localStorage.getItem('matchData'));
+            data.type = 'pass';
+            let detail = template('rqData', data);
+            $('.main.selected ul').html(detail);
+        }
+        function showSingleData() {
+            let single = JSON.parse(localStorage.getItem('matchData'));
+            single.matchData.map(element => {
+                let singleData = [];;
+                element.matchInfo.map(ele => {
+                    if (ele.gamePlay['56'] == '3') {
+                        singleData.push(ele);
+                    }
+                });
+                element.matchInfo = singleData;
+            });
+            single.type = 'single';
+            return single;
+        }
+
+        let selectData = JSON.parse(sessionStorage.getItem('spfdataArr'));
+        if (selectData != null || selectData != undefined) {
+            let data = {};
+            if (selectData[0].type == "single") {
+                $('.change-item').eq(1).removeClass("right_ative").siblings().addClass("left_ative");
+                data = showSingleData();
+            } else {
+                $('.change-item').eq(0).removeClass("left_ative").siblings().addClass("right_ative");
+                data = JSON.parse(localStorage.getItem('matchData'));
+            }
+            $.each(selectData, function (index, element) {
+                datasetId = element.matchuniqueid;
+                $.each(data.matchData, function (idx, ele) {
+                    $.each(ele.matchInfo, function (itemIndex, item) {
+                        if (item.matchUniqueId == datasetId) {
+                            item.firstindex = element.firstindex;
+                            item.secindex = element.secindex;
+                            item.thirdindex = element.thirdindex;
+                        }
+                    });
+                });
+            });
+            let detail = template('rqData', data);
+            $('.main.selected ul').html(detail);
+        }
+    </script>
+</body>
+
+</html>

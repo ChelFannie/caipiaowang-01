@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>彩票网</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../lib/mui/css/mui.css">
+    <style>
+         p {
+            color: #fff;
+        }
+        select, textarea, input[type='text'], input[type='search'], input[type='password'], input[type='datetime'], input[type='datetime-local'], input[type='date'], input[type='month'], input[type='time'], input[type='week'], input[type='number'], input[type='email'], input[type='url'], input[type='tel'], input[type='color'] {
+            border: none;
+        }
+        .menu_nav ul {
+            margin-bottom: .2rem;
+        }
+
+        .menu_nav li {
+            height: 0.9rem;
+            line-height: .88rem;
+            font-size: .28rem;
+            background: #fff;
+            padding: 0 .2rem;
+            color: #333;
+            width: 100%;
+            position: relative;
+            border-bottom: 1px solid #999;
+        }
+
+        .menu_nav li span {
+            position: absolute;
+            left: .2rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .menu_nav li:last-of-type {
+            border-bottom: none;
+        }
+
+        .menu_nav label input {
+            color: #999;
+            font-size: .28rem;
+            padding-left: 1.4rem;
+            width: 100%;
+        }
+
+        .cash_type {
+            padding: .2rem;
+            font-size: .24rem;
+            color: #666;
+        }
+
+        .btn {
+            border: none;
+            outline: none;
+            display: block;
+            width: 5.2rem;
+            height: 0.8rem;
+            line-height: .8rem;
+            color: #fff;
+            background-color: #d3233c;
+            font-size: .32rem;
+            text-align: center;
+            margin: 0 auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 头部 start -->
+    <header class="navbar-fixed-top clearfix">
+        <a href="javascript:history.back(-1)" class="return fl">
+            <img src="../../images/back.png">
+            <span>返回</span>
+        </a>
+        <p class="fl">修改密码</p>
+    </header>
+    <div style="height: 0.8rem"></div>
+    <!-- 头部  end -->
+
+    <!-- 付款导航 start -->
+    <form class="menu_nav">
+        <ul>
+            <li>
+                <label>
+                    <span>旧密码</span>
+                    <input type="password" placeholder="请输入旧密码" class="oldpwd">
+                </label>
+            </li>
+            <li>
+                <label>
+                    <span>新密码</span>
+                    <input type="password" placeholder="请输入新密码" class="newpwd">
+                </label>
+
+            </li>
+            <li>
+                <label>
+                    <span>确认密码</span>
+                    <input type="password" placeholder="再次输入新的密码" class='repeat_newpwd'>
+                </label>
+            </li>
+        </ul>
+        <button class="btn">提交</button>
+    </form>
+    <!-- 付款导航 end -->
+</body>
+<script src="../../lib/mui/js/mui.js"></script>
+<script src="../../lib/zepto/zepto.min.js"></script>
+<script>
+    $(function(){
+       $('.menu_nav input[type=password]').on('blur', function () {
+            let pwd= $.trim($('.menu_nav input[type=password]').val());
+            // 密码(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)
+            let reg = /^[a-zA-Z]\w{5,17}$/; 
+            if(!reg.test(pwd)){
+                mui.alert('密码(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)');
+                $('.menu_nav input[type=password]').val('');
+                return false;
+            }
+        });
+        $('.menu_nav .repeat_newpwd').on('blur', function () {
+            let newpwd = $.trim($('.menu_nav .newpwd').val());
+            let repeatNewpwd = $.trim($(this).val());
+            if(repeatNewpwd != newpwd){
+                mui.alert('两次密码不一致，请重新输入',function(){
+                    $('.newpwd').focus();
+                });
+                $('.menu_nav .newpwd').val('');
+                $(this).val('');
+                return false; 
+            }
+        });
+
+        $('.menu_nav button').on('tap',function(){
+            /*判断用户是否输入了用户名，如果没有输入则取消本次请求*/
+            if($.trim($(".oldpwd").val()) == ""){
+                mui.alert('请输入旧密码',function(){
+                    $('.oldpwd').focus();
+                });          
+                return false;
+            }
+            if($.trim($(".newpwd").val()) == ""){
+                mui.alert('请输入新密码',function(){
+                    $('.newpwd').focus();
+                });
+                return false;
+            }
+            if($.trim($(".repeat_newpwd").val()) == ""){
+                mui.alert('请再次输入密码',function(){
+                    $('.repeat_newpwd').focus();
+                });
+                return false;
+            }
+        });
+    })
+</script>
+</html>
